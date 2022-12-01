@@ -18,7 +18,7 @@ Feature: View Orders
     Then User should see item in cart
     Then User should buy item in cart (a lot going on here)
     When User will click on Orders
-    Then User will see order purchased
+    Then User will see all order purchased and view details
 
   firstname | lastname | email | password |
   | "Corey" | "Miller" |"goodorders@gmail.com" | "Orders10!" |
