@@ -1,8 +1,8 @@
 @login
-  Feature: Login Positive
-    Given: User is on the home page
+Feature: Login Negative
+  Given: User is on the home page
 
-  Scenario Outline: Valid User Logins
+  Scenario Outline: Invalid User Login
     When User clicks on Sign Up link
     When User types <email> into email field
     When User types <password> into password field
@@ -11,5 +11,6 @@
 
     Examples:
 
-    |email | password |
-    |"cmiller241@gmail.com" | "password" |
+      |email | password |
+      |"cmiller241@gmail.com" | "fakepassword" |
+      |"whatever" | "whatever" |
