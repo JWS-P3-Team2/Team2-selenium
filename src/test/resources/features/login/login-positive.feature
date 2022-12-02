@@ -1,6 +1,6 @@
 @login
   Feature: Login Positive
-    Given: User is on the home page
+    Given User is on the home page
 
   Scenario Outline: Valid User Logins
     When User clicks on Sign Up link

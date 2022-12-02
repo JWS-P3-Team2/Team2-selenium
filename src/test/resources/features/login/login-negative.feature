@@ -1,6 +1,6 @@
 @login
 Feature: Login Negative
-  Given: User is on the home page
+  Given User is on the home page
 
   Scenario Outline: Invalid User Login
     When User clicks on Sign Up link
