@@ -11,7 +11,7 @@ Feature: A registered user, guest, or admin can adjust color scheme to normal or
     | user            |
     | registeredUser  |
     | guest           |
-    | admin           |
+
 
   Scenario Outline: The dark mode color scheme is enable for each link on the web page
     Given The <user> is logged in and on the home page
@@ -26,4 +26,3 @@ Feature: A registered user, guest, or admin can adjust color scheme to normal or
       | user            |
       | registeredUser  |
       | guest           |
-      | admin           |
