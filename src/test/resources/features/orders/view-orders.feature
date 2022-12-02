@@ -1,6 +1,8 @@
 @orders
 Feature: View Orders
-  Given: User is on the home page
+
+  Background: User is on homepage
+  Given User is on the home page
 
   Scenario Outline: View Orders
     When User clicks on Register link
@@ -20,5 +22,6 @@ Feature: View Orders
     When User will click on Orders
     Then User will see all order purchased and view details
 
-  firstname | lastname | email | password |
+    Examples:
+  | firstname | lastname | email | password |
   | "Corey" | "Miller" |"goodorders@gmail.com" | "Orders10!" |

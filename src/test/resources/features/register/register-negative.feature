@@ -1,6 +1,6 @@
 @register
 Feature: Register Negative
-  Given: User is on the home page
+  Given User is on the home page
 
   Scenario Outline: Invalid User Register
     When User clicks on Register link

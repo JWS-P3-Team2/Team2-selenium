@@ -1,6 +1,6 @@
 @register
 Feature: Register Positive
-  Given: User is on the home page
+  Given User is on the home page
 
   Scenario Outline: Valid User Register
     When User clicks on Register link
