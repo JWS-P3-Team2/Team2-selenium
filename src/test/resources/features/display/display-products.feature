@@ -1,5 +1,5 @@
 @display-products
-Feature: Login
+Feature: display-products
 
   Scenario: Users should be able to see a list of available products to add
     Given The user is on the home page
