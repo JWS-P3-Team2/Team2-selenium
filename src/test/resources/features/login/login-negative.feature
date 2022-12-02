@@ -12,5 +12,22 @@ Feature: Login Negative
     Examples:
 
       |email | password |
-      |"cmiller241@gmail.com" | "fakepassword" |
-      |"whatever" | "whatever" |
+      | "noatemail.com"        | "password"    |
+      | "nofirstname@test.com" | "Password10!"  |
+      | "nolastname@test.com"  | "Password10!"  |
+      | "illegalfirst@gm.com"  | "Password10!"  |
+      | "illegallast@gm.com"   | "Password10!"  |
+      | "nolastname@test.com"  | "Password10!"  |
+      | "nonameatall@test.com" | "Password10!"  |
+      | ""                     | "Password10!"  |
+      | "invalidemailaddress"  | "Password10!"  |
+      | "emailused@gmail.com"  | "Password10!"  |
+      | "emailused@gmail.com"  | "Password10!"  |
+      | "shortpassword@gm.com" | "Pp"          |
+      | "lowercasepass@gm.com" | "password"    |
+      | "uppercasepass@gm.com" | "PASSWORD"    |
+      | "allnumspass@gm.com"   | "133243422"   |
+      | "illegalkeys@gm.com"   | "&%$%^$$%^#@" |
+      | "nospecialpass@gm.com" | "Password10"  |
+      | "nouppercase@gm.com"   | "password10#"  |
+      | "nolowercase@gm.com"   | "PASSWORD10!"  |

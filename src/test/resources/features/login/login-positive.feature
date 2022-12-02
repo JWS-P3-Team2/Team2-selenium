@@ -12,4 +12,8 @@
     Examples:
 
     |email | password |
-    |"cmiller241@gmail.com" | "password" |
+    |"admin@example.com"        | "password" |
+    |"testexample.com"          | "password" |
+    |"cart-tester@example.com"  | "password" |
+
+

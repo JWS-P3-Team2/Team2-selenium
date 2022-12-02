@@ -13,24 +13,24 @@ Feature: Register Negative
 
     Examples:
     firstname | lastname | email | password |
-      | "Corey" | "Miller" |"cmiller241gmail.com"   | "password"    |
-      | ""      | "Miller" | "nofirstname@test.com" | "Password10!"  |
-      |"Corey"  | ""       | "nolastname@test.com"  | "Password10!"  |
-      |"21223"  | "Miller" | "illegalfirst@gm.com"  | "Password10!"  |
-      |"Corey"  | "244242" | "illegallast@gm.com"   | "Password10!"  |
-      |"Corey"  | ""       | "nolastname@test.com"  | "Password10!"  |
+      | "Addy" | "Admin"   | "admin@example.com"   | "password"    |
+      | ""      | "Admin" | "nofirstname@test.com" | "Password10!"  |
+      | "Addy"  | ""       | "nolastname@test.com"  | "Password10!"  |
+      |"21223"  | "Admin" | "illegalfirst@gm.com"  | "Password10!"  |
+      |"Addy"  | "244242" | "illegallast@gm.com"   | "Password10!"  |
+      |"Addy"  | ""       | "nolastname@test.com"  | "Password10!"  |
       | ""      | ""       | "nonameatall@test.com" | "Password10!"  |
-      |"Corey"  | "Miller" | ""                     | "Password10!"  |
-      |"Corey"  | "Miller" | "invalidemailaddress"  | "Password10!"  |
-      |"Corey"  | "Miller" | "emailused@gmail.com"  | "Password10!"  |
-      |"Corey"  | "Miller" | "emailused@gmail.com"  | "Password10!"  |
-      |"Corey"  | "Miller" | "shortpassword@gm.com" | "Pp"          |
-      |"Corey"  | "Miller" | "lowercasepass@gm.com" | "password"    |
-      |"Corey"  | "Miller" | "uppercasepass@gm.com" | "PASSWORD"    |
-      |"Corey"  | "Miller" | "allnumspass@gm.com"   | "133243422"   |
-      |"Corey"  | "Miller" | "illegalkeys@gm.com"   | "&%$%^$$%^#@" |
-      |"Corey"  | "Miller" | "nospecialpass@gm.com" | "Password10"  |
-      |"Corey"  | "Miller" | "nouppercase@gm.com"   | "password10#"  |
-      |"Corey"  | "Miller" | "nolowercase@gm.com"   | "PASSWORD10!"  |
+      |"Addy"  | "Admin" | ""                     | "Password10!"  |
+      |"Addy"  | "Admin" | "invalidemailaddress"  | "Password10!"  |
+      |"Addy"  | "Admin" | "emailused@gmail.com"  | "Password10!"  |
+      |"Addy"  | "Admin" | "emailused@gmail.com"  | "Password10!"  |
+      |"Addy"  | "Admin" | "shortpassword@gm.com" | "Pp"          |
+      |"Addy"  | "Admin" | "lowercasepass@gm.com" | "password"    |
+      |"Addy"  | "Admin" | "uppercasepass@gm.com" | "PASSWORD"    |
+      |"Addy"  | "Admin" | "allnumspass@gm.com"   | "133243422"   |
+      |"Addy"  | "Admin" | "illegalkeys@gm.com"   | "&%$%^$$%^#@" |
+      |"Addy"  | "Admin" | "nospecialpass@gm.com" | "Password10"  |
+      |"Addy"  | "Admin" | "nouppercase@gm.com"   | "password10#"  |
+      |"Addy"  | "Admin" | "nolowercase@gm.com"   | "PASSWORD10!"  |
 
 
