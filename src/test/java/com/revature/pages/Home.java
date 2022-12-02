@@ -13,4 +13,7 @@ public class Home {
     @FindBy(xpath="//strong[text()='SIGN IN']")
     public WebElement signInLink;
 
+    @FindBy(xpath="//strong[text()='PROFILE']")
+    public WebElement profileLink;
+
 }

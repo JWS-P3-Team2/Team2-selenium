@@ -1,4 +1,4 @@
-package com.revature.stepimplementations.login;
+package com.revature.steps.login;
 
 import com.revature.MainRunner;
 import io.cucumber.core.runner.Runner;
@@ -6,14 +6,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class LoginPositive {
     @Given("User is on the home page")
-    public void user_is_on_the_home_page() {
+    public void user_is_on_the_home_page() throws InterruptedException {
         MainRunner.driver.get(MainRunner.webURL);
     }
-    @When("User clicks on Register link")
-    public void user_clicks_on_register_link() {
+
+    @When("User clicks on Sign In link")
+    public void user_clicks_on_sign_in_link() {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.signInLink));
         MainRunner.homePage.signInLink.click();
     }
@@ -27,13 +29,24 @@ public class LoginPositive {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.password));
         MainRunner.loginPage.password.sendKeys(string);
     }
-    @When("User clicks Sign Up Button")
+    @When("User clicks Sign In Button")
     public void user_clicks_sign_up_button() {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.loginButton));
         MainRunner.loginPage.loginButton.click();
     }
-    @Then("User will appear on sign in page")
-    public void user_will_appear_on_sign_in_page() {
 
+    @Then("User should click on Profile link")
+    public void user_should_click_on_profile_link() {
+        try {
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.profileLink));
+            MainRunner.homePage.profileLink.click();
+        } else {
+            Assert.assertEquals(false,true,"User not logged in!");
+        }
+    }
+
+    @Then("User should see {string} in greeting")
+    public void user_should_see_in_greeting(String string) {
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.profilePage.headerDisplay));
     }
 }
