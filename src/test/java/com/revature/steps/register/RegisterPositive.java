@@ -4,6 +4,7 @@ import com.revature.MainRunner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 public class RegisterPositive {
     @When("User clicks on Register link")
@@ -24,14 +25,14 @@ public class RegisterPositive {
         MainRunner.registerPage.lastName.sendKeys(string);
     }
 
-    @When("User types {string} into email field")
-    public void user_types_email_into_email_field(String string) {
+    @When("User types {string} into email registration field")
+    public void user_types_email_into_email_registration_field(String string) {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.registerPage.email));
         MainRunner.registerPage.email.sendKeys(string);
     }
 
-    @When("User types {string} into password field")
-    public void user_types_password_into_password_field(String string) {
+    @When("User types {string} into password registration field")
+    public void user_types_password_into_password_registration_field(String string) {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.registerPage.password));
         MainRunner.registerPage.password.sendKeys(string);
     }
@@ -42,4 +43,17 @@ public class RegisterPositive {
         MainRunner.registerPage.loginButton.click();
     }
 
+    //If you don't wait for the log in page,
+    //Selenium assumes LOG IN email & password are REGISTER email & password.
+    //(They are the same ID despite being on different forms)
+    //It will input data into the REGISTER form even as the form moves to LOGIN,
+    //Where the data should actually go.
+    @When("User waits for log in page")
+    public void userWaitsForLogInPage() {
+        try {
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.signInTitle));
+        } catch (Exception e) {
+            Assert.assertEquals(false, true, "Registration form not submitted");
+        }
+    }
 }

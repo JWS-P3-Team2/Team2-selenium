@@ -10,6 +10,6 @@ public class Profile {
         PageFactory.initElements(driver,this);
     }
 
-    @FindBy(xpath="//h2[1]/")
+    @FindBy(xpath="//h2")
     public WebElement profileGreeting;
 }

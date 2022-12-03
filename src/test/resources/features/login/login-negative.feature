@@ -13,17 +13,7 @@ Feature: Login Negative
     Examples:
 
       |email | password |
-      | "noatemail.com"        | "password"    |
-      | "nofirstname@test.com" | "Password10!"  |
-      | "nolastname@test.com"  | "Password10!"  |
-      | "illegalfirst@gm.com"  | "Password10!"  |
-      | "illegallast@gm.com"   | "Password10!"  |
-      | "nolastname@test.com"  | "Password10!"  |
-      | "nonameatall@test.com" | "Password10!"  |
-      | ""                     | "Password10!"  |
       | "invalidemailaddress"  | "Password10!"  |
-      | "emailused@gmail.com"  | "Password10!"  |
-      | "emailused@gmail.com"  | "Password10!"  |
       | "shortpassword@gm.com" | "Pp"          |
       | "lowercasepass@gm.com" | "password"    |
       | "uppercasepass@gm.com" | "PASSWORD"    |

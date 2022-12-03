@@ -7,9 +7,10 @@ Feature: Register Negative
     When User clicks on Register link
     When User types <firstname> into firstname field
     When User types <lastname> into lastname field
-    When User types <email> into email field
-    When User types <password> into password field
+    When User types <email> into email registration field
+    When User types <password> into password registration field
     When User clicks Sign Up Button
+    When User waits for log in page
     When User types <email> into email field
     When User types <password> into password field
     When User clicks Sign In Button
@@ -18,19 +19,15 @@ Feature: Register Negative
 
     Examples:
     |firstname | lastname | email | password |
-      | "Addy" | "Admin"   | "admin@example.com"   | "password"    |
       | ""      | "Admin" | "nofirstname@test.com" | "Password10!"  |
       | "Addy"  | ""       | "nolastname@test.com"  | "Password10!"  |
       |"21223"  | "Admin" | "illegalfirst@gm.com"  | "Password10!"  |
       |"Addy"  | "244242" | "illegallast@gm.com"   | "Password10!"  |
-      |"Addy"  | ""       | "nolastname@test.com"  | "Password10!"  |
       | ""      | ""       | "nonameatall@test.com" | "Password10!"  |
       |"Addy"  | "Admin" | ""                     | "Password10!"  |
       |"Addy"  | "Admin" | "invalidemailaddress"  | "Password10!"  |
-      |"Addy"  | "Admin" | "emailused@gmail.com"  | "Password10!"  |
-      |"Addy"  | "Admin" | "emailused@gmail.com"  | "Password10!"  |
       |"Addy"  | "Admin" | "shortpassword@gm.com" | "Pp"          |
-      |"Addy"  | "Admin" | "lowercasepass@gm.com" | "password"    |
+      |"Addy"  | "Admin" | "lowercasepass@gm.com" | "password10!"    |
       |"Addy"  | "Admin" | "uppercasepass@gm.com" | "PASSWORD"    |
       |"Addy"  | "Admin" | "allnumspass@gm.com"   | "133243422"   |
       |"Addy"  | "Admin" | "illegalkeys@gm.com"   | "&%$%^$$%^#@" |
