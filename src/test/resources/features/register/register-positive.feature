@@ -10,11 +10,15 @@ Feature: Register Positive
     When User types <email> into email field
     When User types <password> into password field
     When User clicks Sign Up Button
-    Then User will appear on sign in page
+    When User types <email> into email field
+    When User types <password> into password field
+    When User clicks Sign In Button
+    Then User should click on Profile link
+    Then User should see <firstname> in greeting
 
     Examples:
 
-      firstname | lastname | email | password |
+      |firstname | lastname | email | password |
       | "Addy" | "Admin" |"admin@example.com" | "Password10#" |
       | "Test" | "Testerson" |"test@example.com" | "Password10#" |
       | "Cart" | "Testermill" |"cart-tester@example.com" | "Password10#" |

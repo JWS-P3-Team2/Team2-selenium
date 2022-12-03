@@ -40,13 +40,15 @@ public class LoginPositive {
         try {
             MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.profileLink));
             MainRunner.homePage.profileLink.click();
-        } else {
+        } catch (Exception e) {
             Assert.assertEquals(false,true,"User not logged in!");
         }
     }
 
     @Then("User should see {string} in greeting")
     public void user_should_see_in_greeting(String string) {
-            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.profilePage.headerDisplay));
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.profilePage.profileGreeting));
+        boolean isPresent = MainRunner.profilePage.profileGreeting.getText().contains(string);
+        Assert.assertEquals(isPresent, true, "User name is not on Profile!");
     }
 }
