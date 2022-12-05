@@ -19,6 +19,12 @@ public class Home {
     @FindBy(xpath="//*[@class='MuiSvgIcon-root']")
     public WebElement navCartLink;
 
+    @FindBy(xpath="//strong[text()='REGISTER']")
+    public WebElement registerLink;
+
+    @FindBy(xpath="//strong[text()='PROFILE']")
+    public WebElement profileLink;
+    
     public Home(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
