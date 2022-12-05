@@ -48,5 +48,17 @@
             <artifactId>selenium-chrome-driver</artifactId>
             <version>4.6.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.8.1</version>
+        </dependency>
     </dependencies>
 </project>

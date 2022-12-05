@@ -6,11 +6,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Home {
-    public Home(WebDriver driver) {
-        PageFactory.initElements(driver,this);
-    }
 
     @FindBy(xpath="//strong[text()='SIGN IN']")
     public WebElement signInLink;
 
+    @FindBy(xpath="//body/div[@id='root']/div[3]/div[1]")
+    public WebElement firstProduct;
+
+    @FindBy(xpath="//body/div[@id='root']/div[3]/div[2]")
+    public WebElement secondProduct;
+
+    @FindBy(xpath="//*[@class='MuiSvgIcon-root']")
+    public WebElement navCartLink;
+
+    public Home(WebDriver driver) {
+        PageFactory.initElements(driver,this);
+    }
 }

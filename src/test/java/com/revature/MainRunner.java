@@ -1,4 +1,5 @@
 package com.revature;
+
 import com.revature.pages.Home;
 import com.revature.pages.Login;
 import com.revature.pages.Register;
@@ -13,12 +14,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
-@CucumberOptions(features="src/test/resources/features/",
-        glue="com.revature.stepimplementations")
+@CucumberOptions(features = "classpath:features/cart", glue = "com.revature.steps.cart")
 public class MainRunner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static WebDriverWait wait;
-    public static String webURL = "http://127.0.0.1:4200";
+    public static String webURL = "http://localhost:4200";
 
     public static Home homePage;
     public static Login loginPage;

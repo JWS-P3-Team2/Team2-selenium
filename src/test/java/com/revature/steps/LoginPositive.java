@@ -1,4 +1,4 @@
-package com.revature.stepimplementations.login;
+package com.revature.steps;
 
 import com.revature.MainRunner;
 import io.cucumber.core.runner.Runner;
