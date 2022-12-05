@@ -2,7 +2,6 @@
 @user-profile-positive
 Feature: user-profile-positive
 # should probably include a background clause
-  @test
   Scenario: Adding Credit Card to Profile
     Given User is logged in
     Given User is on profile page
@@ -15,6 +14,12 @@ Feature: user-profile-positive
 
   Scenario: Deleting a Credit Credit Card from Profile
     Given User is logged in
+    Given User is on profile page
+    Given User located the payment-management module
+    Given User located the payment-table module
+    Given User located a payment-row module
+    When User clicks the delete payment button
+    Then The payment should no longer be visible
 
   Scenario: Updating Profiles Full Name
     Given User is logged in

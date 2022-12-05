@@ -1,5 +1,6 @@
 package com.revature.steps.profile;
 
+import com.google.common.collect.Table;
 import com.revature.modules.*;
 import com.revature.pages.ProfilePage;
 
@@ -229,8 +230,8 @@ public class ProfileSteps extends CachingSteps {
         );
     }
 
-    @Then("payement-row ccv")
-    public void payement_row_ccv() {
+    @Then("payment-row ccv")
+    public void payment_row_ccv() {
         PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
         wait.until(
                 ExpectedConditions.visibilityOf(module.ccvTd)
@@ -296,6 +297,21 @@ public class ProfileSteps extends CachingSteps {
               )
             );
         });
+    }
+
+    @When("User clicks the delete payment button")
+    public void user_clicks_the_delete_payment_button() {
+        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
+        TableModule table = (TableModule) cache.get("payment-table");
+        cache.put("paymentCount", table.rows.size());
+        module.deleteButton.click();
+    }
+
+    @Then("The payment should no longer be visible")
+    public void the_payment_should_no_longer_be_visible() {
+        TableModule table = (TableModule) cache.get("payment-table");
+        Integer oldCount = (Integer) cache.get("paymentCount");
+        if (table.rows.size() + 1 != oldCount) throw new AssertionError("no payment was removed");
     }
 
 }

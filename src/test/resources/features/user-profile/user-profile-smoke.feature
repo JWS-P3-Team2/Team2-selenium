@@ -30,6 +30,6 @@ Feature: user-profile-smoke
     Given User located a payment-row module
     Then payment-row cardNumber
     Then payment-row expirationDate
-    Then payement-row ccv
+    Then payment-row ccv
     Then payment-row deleteButton
 
