@@ -1,4 +1,5 @@
 @login
+@login-negative
 Feature: Login Negative
   Background: User is on the home page
     Given User is on the home page
@@ -22,3 +23,6 @@ Feature: Login Negative
       | "nospecialpass@gm.com" | "Password10"  |
       | "nouppercase@gm.com"   | "password10#"  |
       | "nolowercase@gm.com"   | "PASSWORD10!"  |
+      | "" | "" |
+      | "" | "guest" |
+      | "admin@example.com" | ""|
