@@ -1,46 +1,20 @@
-package com.revature.steps;
+package com.revature.steps.profile;
 
 import com.revature.modules.*;
 import com.revature.pages.ProfilePage;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.BeforeAll;
+import com.revature.steps.CachingSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class ProfileSteps extends CachingSteps {
-
-    @BeforeAll
-    public static void initialize() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @Before
-    public void setup() {
-        cache = new HashMap<>();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(1));
-    }
-
-    @After
-    public void cleanup() {
-        cache.clear();
-        driver.quit();
-    }
 
     @Given("User is logged in")
     public void user_is_logged_in() {
