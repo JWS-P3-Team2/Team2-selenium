@@ -1,9 +1,10 @@
 Feature: Create product
 
   Background:
-    Given I am on the sign in page
-    When I fill in the email and password fields with valid credentials of an admin
-    And I click the sign in button
+    When User clicks on Sign In link
+    When User types "admin@example.com" into email field
+    When User types "password" into password field
+    When User clicks Sign In Button
 
   Scenario Outline: An admin creates a new product
     When User clicks on edit products

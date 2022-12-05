@@ -19,4 +19,9 @@ public class Home {
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
 
+    @FindBy(xpath="//strong[text()='EDIT PRODUCTS']")
+    public WebElement editProductLink;
+    @FindBy(xpath="//div[3]/div[1]/div")
+    public WebElement firstProduct;
+
 }
