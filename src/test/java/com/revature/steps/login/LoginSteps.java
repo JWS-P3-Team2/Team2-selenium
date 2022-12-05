@@ -1,14 +1,13 @@
 package com.revature.steps.login;
 
 import com.revature.MainRunner;
-import io.cucumber.core.runner.Runner;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-public class LoginPositive {
+public class LoginSteps {
     @Given("User is on the home page")
     public void user_is_on_the_home_page() throws InterruptedException {
         MainRunner.driver.get(MainRunner.webURL);
