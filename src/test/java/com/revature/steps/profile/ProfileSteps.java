@@ -6,10 +6,16 @@ import com.revature.pages.ProfilePage;
 import com.revature.steps.CachingSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -237,6 +243,59 @@ public class ProfileSteps extends CachingSteps {
         wait.until(
                 ExpectedConditions.visibilityOf(module.deleteButton)
         );
+    }
+
+    @When("^User types (\\d+) into card number field$")
+    public void user_types_into_card_number_field(String cardNumber) {
+        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
+        cache.put("cardNumber", cardNumber);
+        module.cardNumberInput.sendKeys(cardNumber);
+    }
+
+    @When("User selects two years from now for the expiration field")
+    public void user_selects_two_years_from_now_for_the_expiration_field() {
+        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.roll(GregorianCalendar.YEAR, 2);
+        StringBuffer buffer = new StringBuffer(); // this should be a helper function
+        buffer.append(calendar.get(GregorianCalendar.DATE));
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.MONTH));
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.YEAR));
+        cache.put("expiration", buffer.toString());
+        module.expDateInput.sendKeys((String) cache.get("expiration"));
+    }
+
+    @When("^User types (\\d+) into ccv field$")
+    public void user_types_into_ccv_field(String ccv) {
+        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
+        cache.put("ccv", ccv);
+        module.ccvInput.sendKeys(ccv);
+    }
+
+    @When("User clicks the add payment button")
+    public void user_clicks_the_add_payment_button() {
+        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
+        module.addPaymentButton.click();
+    }
+
+    @Then("The new payment should be visible in the payment-table")
+    public void the_new_payment_should_be_visible_in_the_payment_table() {
+        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
+        TableModule table = PageFactory.initElements(module.paymentTable, TableModule.class);
+        wait.until(driver -> {
+            WebElement lastRow = table.rows.get(table.rows.size() - 1);
+            PaymentRowModule target = PageFactory.initElements(lastRow, PaymentRowModule.class);
+            return (
+              target.cardNumberTd.getText().equals(
+                      (String) cache.get("cardNumber")
+              ) &&
+              target.ccvTd.getText().equals(
+                      (String) cache.get("ccv")
+              )
+            );
+        });
     }
 
 }

@@ -1,3 +1,4 @@
+@user-profile
 @user-profile-smoke
 Feature: user-profile-smoke
 

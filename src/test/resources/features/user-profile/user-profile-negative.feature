@@ -1,3 +1,4 @@
+@user-profile
 @user-profile-negative
 Feature: user-profile-negative
 

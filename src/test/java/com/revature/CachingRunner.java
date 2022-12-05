@@ -15,10 +15,10 @@ import java.util.HashMap;
 
 @CucumberOptions(
         features="src/test/resources/features",
-        glue="com.revature.steps.profile",
-        tags="@user-profile-smoke"
+        glue="com.revature.steps",
+        tags="@user-profile"
 )
-public class ExperimentalRunner extends AbstractTestNGCucumberTests {
+public class CachingRunner extends AbstractTestNGCucumberTests {
     @BeforeSuite
     public static void cachingInitialize() {
         WebDriverManager.chromedriver().setup();
