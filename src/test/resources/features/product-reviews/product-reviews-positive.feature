@@ -1,6 +1,7 @@
+@product-reviews
 Feature: Leave a review for a product
 
-  Scenario: Leave a review for a product
+  Scenario: Leave a review for a product while signed in
     Given I am on the sign in page
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
@@ -10,3 +11,5 @@ Feature: Leave a review for a product
     When I click the leave a review link
     Then I should be on the leave a review page
     When I fill in the review form with valid data
+    And I click the submit button
+    Then I should see the review under product reviews
