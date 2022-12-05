@@ -20,6 +20,9 @@ public class Login {
     @FindBy(xpath="//form//button")
     public WebElement loginButton;
 
+    @FindBy(xpath="//h1[text()='Sign in']")
+    public WebElement signInTitle;
+
 
 
 }
