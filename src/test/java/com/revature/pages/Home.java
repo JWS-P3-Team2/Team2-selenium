@@ -24,6 +24,12 @@ public class Home {
 
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
+
+    @FindBy(xpath="//*[@class='MuiSwitch-root']")
+    public WebElement darkModeBtn;
+
+    @FindBy(tagName = "Body")
+    public WebElement mainBody;
     
     public Home(WebDriver driver) {
         PageFactory.initElements(driver,this);
