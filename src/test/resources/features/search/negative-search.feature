@@ -3,7 +3,7 @@ Feature: Search for a product
 
     Scenario Outline: Search for a product with no results
     Given I am on the home page
-    When I type <random> in the search field
+    When I type "<random>" in the search field
     And I click the search button
     Then I should see no results
 
@@ -11,5 +11,10 @@ Feature: Search for a product
     | random                              |
     | blah                                |
     | 42                                  |
-    | <script>console.log("xss")</script> |
     | David                               |
+
+    Scenario: Try to use script injection in the search field
+    Given I am on the home page
+    When I type "<script>alert('XSS');</script>" in the search field
+    And I click the search button
+    Then I should see no alert

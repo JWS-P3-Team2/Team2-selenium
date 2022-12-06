@@ -19,4 +19,13 @@ public class Home {
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
 
+    @FindBy(xpath="//body/div[@id='root']/div[2]/div[1]/div[1]/input[1]")
+    public WebElement searchInput;
+
+    @FindBy(xpath="//body/div[@id='root']/div[2]/div[1]/button[1]")
+    public WebElement searchButton;
+
+    @FindBy(xpath="/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/h5[1]")
+    public WebElement searchResultHeader;
+
 }

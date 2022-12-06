@@ -1,9 +1,6 @@
 package com.revature;
 
-import com.revature.pages.Home;
-import com.revature.pages.Login;
-import com.revature.pages.Profile;
-import com.revature.pages.Register;
+import com.revature.pages.*;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -28,6 +25,8 @@ public class MainRunner extends AbstractTestNGCucumberTests {
 
     public static Profile profilePage;
 
+    public static Review reviewPage;
+
     @BeforeMethod
     public void setup() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
@@ -37,6 +36,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         loginPage = new Login(driver);
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
+        reviewPage = new Review(driver);
     }
 
     @AfterMethod
