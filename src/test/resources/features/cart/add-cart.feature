@@ -1,4 +1,3 @@
-@login
 Feature: Add Cart
   Given User is on the home page
 
