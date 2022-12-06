@@ -24,4 +24,5 @@ public class Home {
     @FindBy(xpath="//div[3]/div[1]/div")
     public WebElement firstProduct;
 
+
 }
