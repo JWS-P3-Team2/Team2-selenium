@@ -6,7 +6,6 @@ import com.revature.steps.bookended.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -358,6 +357,16 @@ public class ProfileSteps extends SeleniumSteps {
     @When("User sends {string} to new profile password input")
     public void user_sends_to_new_profile_password_input(String newPassword) {
         updateProfile.passwordInput.sendKeys(newPassword);
+    }
+
+    @When("User sends {string} to deactivate account input")
+    public void user_sends_to_deactivate_account_input(String keyPhrase) {
+        deactivateAccount.deactivateInput.sendKeys(keyPhrase);
+    }
+
+    @When("User clicks the deactivate account button")
+    public void user_clicks_the_deactivate_account_button() {
+        deactivateAccount.deactivateButton.click();
     }
 
 }

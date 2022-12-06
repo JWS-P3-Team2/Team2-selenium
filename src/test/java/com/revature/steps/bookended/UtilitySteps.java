@@ -1,8 +1,10 @@
 package com.revature.steps.bookended;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -48,5 +50,22 @@ public class UtilitySteps extends SeleniumSteps {
         );
     }
 
+    @Then("User is on login page")
+    public void user_is_on_login_page() {
+        wait.until(
+                ExpectedConditions.urlMatches(loginUrl + "/?")
+        );
+    }
+
+    @Then("User cannot login with {string} and {string}")
+    public void user_cannot_login_with_and(String username, String password) {
+        try {
+            user_is_logged_in(username, password);
+            throw new AssertionError("user was able to login with deactivated account");
+        }
+        catch (TimeoutException e) {
+            // failure to login will result in a timeout exception
+        }
+    }
 
 }

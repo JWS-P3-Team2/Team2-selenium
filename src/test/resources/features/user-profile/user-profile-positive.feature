@@ -22,7 +22,6 @@ Feature: user-profile-positive
     When User clicks the delete payment button
     Then The payment should no longer be visible
 
-  @test
   Scenario: Updating Profiles Full Name
     Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
@@ -45,5 +44,12 @@ Feature: user-profile-positive
     And User signs out
     Then User is logged in with "user-profile@onetime.com" and "new password"
 
+  @test
   Scenario: Deactivating User Profile
-    Given User is logged in
+    Given User is logged in with "user-profile@tobedeactivated.com" and "guest"
+    And User is on profile page
+    And User located the deactivate-account module
+    When User sends "deactivate" to deactivate account input
+    And User clicks the deactivate account button
+    Then User is on login page
+    Then User cannot login with "user-profile@tobedeactivated.com" and "guest"
