@@ -1,4 +1,5 @@
 @register
+@register-positive
 Feature: Register Positive
   Background: User is on the home page
     Given User is on the home page

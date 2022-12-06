@@ -1,3 +1,4 @@
+@register
 @register-negative
 Feature: Register Negative
   Background: User is on the home page
