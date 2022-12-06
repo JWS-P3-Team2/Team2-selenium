@@ -17,7 +17,7 @@ public class TransactionNotification {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.signInLink));
         MainRunner.homePage.signInLink.click();
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.email));
-        MainRunner.loginPage.email.sendKeys("test@example.com");
+        MainRunner.loginPage.email.sendKeys("user-profile@example.com");
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.password));
         MainRunner.loginPage.password.sendKeys("guest");
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.loginButton));
