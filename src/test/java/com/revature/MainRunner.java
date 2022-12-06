@@ -1,9 +1,6 @@
 package com.revature;
 
-import com.revature.pages.Home;
-import com.revature.pages.Login;
-import com.revature.pages.Profile;
-import com.revature.pages.Register;
+import com.revature.pages.*;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -24,12 +21,12 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static String webURL = "http://localhost:4200";
-
     public static Home homePage;
     public static Login loginPage;
     public static Register registerPage;
-
     public static Profile profilePage;
+    public static YourBag yourBagPage;
+    public static Checkout checkoutPage;
 
     @BeforeMethod
     public void setup() throws InterruptedException {
@@ -40,6 +37,8 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         loginPage = new Login(driver);
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
+        yourBagPage = new YourBag(driver);
+        checkoutPage = new Checkout(driver);
     }
 
     @AfterMethod
