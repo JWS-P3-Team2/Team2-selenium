@@ -10,6 +10,7 @@ Feature: user-profile-positive
     When User selects two years from now for the expiration field
     When User types 000 into ccv field
     When User clicks the add payment button
+    Given User located the payment-table module
     Then The new payment should be visible in the payment-table
 
   Scenario: Deleting a Credit Credit Card from Profile

@@ -1,27 +1,36 @@
-package com.revature.steps.profile;
+package com.revature.steps.selenium.profile;
 
-import com.google.common.collect.Table;
 import com.revature.modules.*;
+import com.revature.modules.DeactivateAccountModule;
+import com.revature.modules.PaymentManagementModule;
+import com.revature.modules.PaymentRowModule;
+import com.revature.modules.UpdateProfileModule;
 import com.revature.pages.ProfilePage;
 
-import com.revature.steps.CachingSteps;
+import com.revature.steps.selenium.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.v85.page.Page;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class ProfileSteps extends CachingSteps {
+public class ProfileSteps extends SeleniumSteps {
+
+    private static String loginUrl = "http://localhost:4200/login";
+    private static String homeUrl = "http://localhost:4200";
+    private static String profileUrl = "http://localhost:4200/userProfile";
+    private static ProfilePage profilePage;
+    private static UpdateProfileModule updateProfile;
+    private static PaymentRowModule paymentRow;
+    private static PaymentManagementModule paymentManagement;
+    private static DeactivateAccountModule deactivateAccount;
+    private static TableModule paymentTable;
 
     @Given("User is logged in")
     public void user_is_logged_in() {
@@ -52,149 +61,156 @@ public class ProfileSteps extends CachingSteps {
     public void user_is_on_profile_page() {
         driver.get(profileUrl);
         wait.until(ExpectedConditions.urlToBe(profileUrl));
-        cache.put(
-                "profile-page",
-                PageFactory.initElements(driver, ProfilePage.class)
+        profilePage = PageFactory.initElements(
+                driver,
+                ProfilePage.class
         );
     }
 
     @Given("User located the update-profile module")
     public void user_located_the_update_profile_module() {
-        ProfilePage page = (ProfilePage) cache.get("profile-page");
-        WebElement updateProfile = wait.until(
+        WebElement context = wait.until(
             ExpectedConditions.visibilityOf(
-                page.updateProfile
+                profilePage.updateProfile
             )
         );
-        cache.put(
-                "update-profile",
-                PageFactory.initElements(updateProfile, UpdateProfileModule.class)
+        updateProfile = PageFactory.initElements(
+                context,
+                UpdateProfileModule.class
         );
     }
 
     @Then("update-profile module has input named firstName")
     public void update_profile_module_has_input_named_first_name() {
-        UpdateProfileModule module = (UpdateProfileModule) cache.get("update-profile");
         wait.until(
-            ExpectedConditions.visibilityOf(module.firstNameInput)
+            ExpectedConditions.visibilityOf(
+                    updateProfile.firstNameInput
+            )
         );
     }
 
     @Then("update-profile module has input named lastName")
     public void update_profile_module_has_input_named_last_name() {
-        UpdateProfileModule module = (UpdateProfileModule) cache.get("update-profile");
         wait.until(
-                ExpectedConditions.visibilityOf(module.lastNameInput)
+                ExpectedConditions.visibilityOf(
+                        updateProfile.lastNameInput
+                )
         );
     }
 
     @Then("update-profile module has input named password")
     public void update_profile_module_has_input_named_password() {
-        UpdateProfileModule module = (UpdateProfileModule) cache.get("update-profile");
         wait.until(
-                ExpectedConditions.visibilityOf(module.passwordInput)
+                ExpectedConditions.visibilityOf(
+                        updateProfile.passwordInput
+                )
         );
     }
 
     @Then("update-profile module has button containing text Update")
     public void update_profile_module_has_button_containing_text_update() {
-        UpdateProfileModule module = (UpdateProfileModule) cache.get("update-profile");
         wait.until(
-                ExpectedConditions.visibilityOf(module.updateButton)
+                ExpectedConditions.visibilityOf(
+                        updateProfile.updateButton
+                )
         );
     }
 
     @Given("User located the deactivate-account module")
     public void user_located_the_deactivate_account_module() {
-        ProfilePage page = (ProfilePage) cache.get("profile-page");
         WebElement context = wait.until(
                 ExpectedConditions.visibilityOf(
-                        page.deactivateAccount
+                        profilePage.deactivateAccount
                 )
         );
-        cache.put(
-                "deactivate-account",
-                PageFactory.initElements(context, DeactivateAccountModule.class)
+        deactivateAccount = PageFactory.initElements(
+                context,
+                DeactivateAccountModule.class
         );
     }
 
     @Then("deactivate-account has deactivateInput")
     public void deactivate_account_has_deactivate_input() {
-        DeactivateAccountModule module = (DeactivateAccountModule) cache.get("deactivate-account");
         wait.until(
-                ExpectedConditions.visibilityOf(module.deactivateInput)
+                ExpectedConditions.visibilityOf(
+                        deactivateAccount.deactivateInput
+                )
         );
     }
 
     @Then("deactivate-account has deactivateButton")
     public void deactivate_account_has_deactivate_button() {
-        DeactivateAccountModule module = (DeactivateAccountModule) cache.get("deactivate-account");
         wait.until(
-                ExpectedConditions.visibilityOf(module.deactivateButton)
+                ExpectedConditions.visibilityOf(
+                        deactivateAccount.deactivateButton
+                )
         );
     }
 
     @Given("User located the payment-management module")
     public void user_located_the_payment_management_module() {
-        ProfilePage page = (ProfilePage) cache.get("profile-page");
         WebElement context = wait.until(
                 ExpectedConditions.visibilityOf(
-                        page.paymentManagement
+                        profilePage.paymentManagement
                 )
         );
-        cache.put(
-                "payment-management",
-                PageFactory.initElements(context, PaymentManagementModule.class)
+        paymentManagement = PageFactory.initElements(
+                context,
+                PaymentManagementModule.class
         );
     }
 
     @Then("payment-management has cardNumberInput")
     public void payment_management_has_card_number_input() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         wait.until(
-                ExpectedConditions.visibilityOf(module.cardNumberInput)
+                ExpectedConditions.visibilityOf(
+                        paymentManagement.cardNumberInput
+                )
         );
     }
 
     @Then("payment-management has expirationInput")
     public void payment_management_has_expiration_input() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         wait.until(
-                ExpectedConditions.visibilityOf(module.expDateInput)
+                ExpectedConditions.visibilityOf(
+                        paymentManagement.expDateInput
+                )
         );
     }
 
     @Then("payment-management has ccvInput")
     public void payment_management_has_ccv_input() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         wait.until(
-                ExpectedConditions.visibilityOf(module.ccvInput)
+                ExpectedConditions.visibilityOf(
+                        paymentManagement.ccvInput
+                )
         );
     }
 
     @Then("payment-management has addButton")
     public void payment_management_has_add_button() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         wait.until(
-                ExpectedConditions.visibilityOf(module.addPaymentButton)
+                ExpectedConditions.visibilityOf(
+                        paymentManagement.addPaymentButton
+                )
         );
     }
 
     @Given("User located the payment-table module")
     public void user_located_the_payment_table_module() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         WebElement context = wait.until(
-                ExpectedConditions.visibilityOf(module.paymentTable)
+                ExpectedConditions.visibilityOf(
+                        paymentManagement.paymentTable
+                )
         );
-        cache.put(
-                "payment-table",
-                PageFactory.initElements(context, TableModule.class)
+        paymentTable = PageFactory.initElements(
+                context,
+                TableModule.class
         );
     }
 
     @Then("^payment-table headers contains (.+)$")
     public void payment_table_headers_contains(String heading) {
-        TableModule paymentTable = (TableModule) cache.get("payment-table");
         List<String> paymentHeaderText = paymentTable.headers.stream().map(
                 element -> element.getText()
         ).collect(Collectors.toList());
@@ -203,59 +219,60 @@ public class ProfileSteps extends CachingSteps {
 
     @Given("User located a payment-row module")
     public void user_located_a_payment_row_module() {
-        TableModule paymentTable = (TableModule) cache.get("payment-table");
         List<WebElement> rows = paymentTable.rows;
         wait.until(
                 ExpectedConditions.visibilityOf(rows.get(0))
         );
-        cache.put(
-                "payment-row",
-                PageFactory.initElements(rows.get(0), PaymentRowModule.class)
+        paymentRow = PageFactory.initElements(
+                rows.get(0),
+                PaymentRowModule.class
         );
     }
 
     @Then("payment-row cardNumber")
     public void payment_row_card_number() {
-        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
         wait.until(
-                ExpectedConditions.visibilityOf(module.cardNumberTd)
+                ExpectedConditions.visibilityOf(
+                        paymentRow.cardNumberTd
+                )
         );
     }
 
     @Then("payment-row expirationDate")
     public void payment_row_expiration_date() {
-        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
         wait.until(
-                ExpectedConditions.visibilityOf(module.expDateTd)
+                ExpectedConditions.visibilityOf(
+                        paymentRow.expDateTd
+                )
         );
     }
 
     @Then("payment-row ccv")
     public void payment_row_ccv() {
-        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
         wait.until(
-                ExpectedConditions.visibilityOf(module.ccvTd)
+                ExpectedConditions.visibilityOf(
+                        paymentRow.ccvTd
+                )
         );
     }
 
     @Then("payment-row deleteButton")
     public void payment_row_delete_button() {
-        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
         wait.until(
-                ExpectedConditions.visibilityOf(module.deleteButton)
+                ExpectedConditions.visibilityOf(
+                        paymentRow.deleteButton
+                )
         );
     }
 
     @When("^User types (\\d+) into card number field$")
     public void user_types_into_card_number_field(String cardNumber) {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         cache.put("cardNumber", cardNumber);
-        module.cardNumberInput.sendKeys(cardNumber);
+        paymentManagement.cardNumberInput.sendKeys(cardNumber);
     }
 
     @When("User selects two years from now for the expiration field")
     public void user_selects_two_years_from_now_for_the_expiration_field() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.roll(GregorianCalendar.YEAR, 2);
         StringBuffer buffer = new StringBuffer(); // this should be a helper function
@@ -265,29 +282,32 @@ public class ProfileSteps extends CachingSteps {
         buffer.append('-');
         buffer.append(calendar.get(GregorianCalendar.YEAR));
         cache.put("expiration", buffer.toString());
-        module.expDateInput.sendKeys((String) cache.get("expiration"));
+        paymentManagement.expDateInput.sendKeys(
+                buffer.toString()
+        );
     }
 
     @When("^User types (\\d+) into ccv field$")
     public void user_types_into_ccv_field(String ccv) {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
         cache.put("ccv", ccv);
-        module.ccvInput.sendKeys(ccv);
+        paymentManagement.ccvInput.sendKeys(ccv);
     }
 
     @When("User clicks the add payment button")
     public void user_clicks_the_add_payment_button() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
-        module.addPaymentButton.click();
+        paymentManagement.addPaymentButton.click();
     }
 
     @Then("The new payment should be visible in the payment-table")
     public void the_new_payment_should_be_visible_in_the_payment_table() {
-        PaymentManagementModule module = (PaymentManagementModule) cache.get("payment-management");
-        TableModule table = PageFactory.initElements(module.paymentTable, TableModule.class);
         wait.until(driver -> {
-            WebElement lastRow = table.rows.get(table.rows.size() - 1);
-            PaymentRowModule target = PageFactory.initElements(lastRow, PaymentRowModule.class);
+            WebElement lastRow = paymentTable.rows.get(
+                    paymentTable.rows.size() - 1
+            );
+            PaymentRowModule target = PageFactory.initElements(
+                    lastRow,
+                    PaymentRowModule.class
+            );
             return (
               target.cardNumberTd.getText().equals(
                       (String) cache.get("cardNumber")
@@ -301,17 +321,21 @@ public class ProfileSteps extends CachingSteps {
 
     @When("User clicks the delete payment button")
     public void user_clicks_the_delete_payment_button() {
-        PaymentRowModule module = (PaymentRowModule) cache.get("payment-row");
-        TableModule table = (TableModule) cache.get("payment-table");
-        cache.put("paymentCount", table.rows.size());
-        module.deleteButton.click();
+        // the easiest way to see if something is deleted
+        // is to count the total elements before and after deletion
+        cache.put(
+                "paymentCount",
+                paymentTable.rows.size()
+        );
+        paymentRow.deleteButton.click();
     }
 
     @Then("The payment should no longer be visible")
     public void the_payment_should_no_longer_be_visible() {
-        TableModule table = (TableModule) cache.get("payment-table");
         Integer oldCount = (Integer) cache.get("paymentCount");
-        if (table.rows.size() + 1 != oldCount) throw new AssertionError("no payment was removed");
+        if (paymentTable.rows.size() + 1 != oldCount) {
+            throw new AssertionError("no payment was removed");
+        }
     }
 
 }
