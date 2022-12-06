@@ -1,4 +1,4 @@
-package com.revature.steps.bookended;
+package com.revature.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,9 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class UtilitySteps extends SeleniumSteps {
-
-    private static String loginUrl = "http://localhost:4200/login";
-    private static String homeUrl = "http://localhost:4200";
 
     @When("User refreshes the page")
     public void user_refreshes_the_page() {

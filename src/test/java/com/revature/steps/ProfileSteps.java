@@ -1,8 +1,7 @@
-package com.revature.steps.bookended.profile;
+package com.revature.steps;
 
 import com.revature.modules.*;
 import com.revature.pages.ProfilePage;
-import com.revature.steps.bookended.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 
 public class ProfileSteps extends SeleniumSteps {
 
-    private static String profileUrl = "http://localhost:4200/userProfile";
     private static ProfilePage profilePage;
     private static UpdateProfileModule updateProfile;
     private static PaymentRowModule paymentRow;
@@ -302,9 +300,10 @@ public class ProfileSteps extends SeleniumSteps {
     @Then("The payment should no longer be visible")
     public void the_payment_should_no_longer_be_visible() {
         Integer oldCount = (Integer) cache.get("paymentCount");
-        if (paymentTable.rows.size() + 1 != oldCount) {
-            throw new AssertionError("no payment was removed");
-        }
+        wait.until(driver -> {
+            // will move on when one payment option goes missing
+            return paymentTable.rows.size() + 1 == oldCount;
+        });
     }
 
     @When("User updates first name input")

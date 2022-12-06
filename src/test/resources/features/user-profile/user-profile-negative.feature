@@ -1,6 +1,6 @@
 @user-profile
 @user-profile-negative
-@pending
+@selenium
 Feature: user-profile-negative
 
   Scenario: User Adds a Payment with Invalid Credit Card Number

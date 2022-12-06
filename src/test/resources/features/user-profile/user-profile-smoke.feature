@@ -1,5 +1,6 @@
 @user-profile
 @user-profile-smoke
+@selenium
 Feature: user-profile-smoke
 
   # User located (module-name) module

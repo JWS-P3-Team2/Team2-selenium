@@ -1,5 +1,6 @@
 @user-profile
 @user-profile-positive
+@selenium
 Feature: user-profile-positive
 # should probably include a background clause
   Scenario: Adding Credit Card to Profile
@@ -13,6 +14,7 @@ Feature: user-profile-positive
     Given User located the payment-table module
     Then The new payment should be visible in the payment-table
 
+  @test
   Scenario: Deleting a Credit Credit Card from Profile
     Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
@@ -44,7 +46,6 @@ Feature: user-profile-positive
     And User signs out
     Then User is logged in with "user-profile@onetime.com" and "new password"
 
-  @test
   Scenario: Deactivating User Profile
     Given User is logged in with "user-profile@tobedeactivated.com" and "guest"
     And User is on profile page
