@@ -14,7 +14,6 @@ Feature: user-profile-positive
     Given User located the payment-table module
     Then The new payment should be visible in the payment-table
 
-  @test
   Scenario: Deleting a Credit Credit Card from Profile
     Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page

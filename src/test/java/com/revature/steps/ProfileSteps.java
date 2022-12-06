@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -366,6 +367,38 @@ public class ProfileSteps extends SeleniumSteps {
     @When("User clicks the deactivate account button")
     public void user_clicks_the_deactivate_account_button() {
         deactivateAccount.deactivateButton.click();
+    }
+
+    @When("User types {string} into card number field")
+    public void alt_user_types_into_card_number_field(String cardNumber) {
+        user_types_into_card_number_field(cardNumber);
+    }
+    @When("User types {string} for the expiration field")
+    public void user_types_for_the_expiration_field(String expDate) {
+        paymentManagement.expDateInput.sendKeys(expDate);
+    }
+    @When("User types {string} into ccv field")
+    public void alt_user_types_into_ccv_field(String ccv) {
+        user_types_into_ccv_field(ccv);
+    }
+    @When("User erroneously clicks the add payment button")
+    public void user_erroneously_clicks_the_add_payment_button() {
+        cache.put("paymentCount", paymentTable.rows.size());
+        paymentManagement.addPaymentButton.click();
+    }
+    @Then("The new payment should not be visible in the payment-table")
+    public void the_new_payment_should_not_be_visible_in_the_payment_table() {
+        try {
+            Integer oldCount = (Integer) cache.get("paymentCount");
+            // will throw an AssertionError if a payment is added
+            wait.until(driver -> {
+                return oldCount + 1 == paymentTable.rows.size();
+            });
+            throw new AssertionError("an invalid payment was created");
+        }
+        catch (TimeoutException e) {
+            // no payment was created, proceed
+        }
     }
 
 }
