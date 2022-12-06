@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 
 public class ProfileSteps extends SeleniumSteps {
 
-    private static String loginUrl = "http://localhost:4200/login";
-    private static String homeUrl = "http://localhost:4200";
     private static String profileUrl = "http://localhost:4200/userProfile";
     private static ProfilePage profilePage;
     private static UpdateProfileModule updateProfile;
@@ -28,31 +26,6 @@ public class ProfileSteps extends SeleniumSteps {
     private static PaymentManagementModule paymentManagement;
     private static DeactivateAccountModule deactivateAccount;
     private static TableModule paymentTable;
-
-    @Given("User is logged in")
-    public void user_is_logged_in() {
-        driver.get(loginUrl); // should be an env variable
-        wait.until(ExpectedConditions.urlToBe(loginUrl));
-        WebElement username = driver.findElement(
-                By.name("email")
-        );
-        WebElement password = driver.findElement(
-                By.name("password")
-        );
-        WebElement submit = driver.findElement(
-                By.xpath("//button[@type='submit']")
-        );
-        username.sendKeys("user-profile@example.com");
-        password.sendKeys("guest");
-        submit.click();
-        // A successful login will re-route the user to home
-        wait.until(
-            ExpectedConditions.or(
-                ExpectedConditions.urlToBe(homeUrl),
-                ExpectedConditions.urlToBe(homeUrl + "/")
-            )
-        );
-    }
 
     @Given("User is on profile page")
     public void user_is_on_profile_page() {
@@ -366,11 +339,6 @@ public class ProfileSteps extends SeleniumSteps {
         updateProfile.updateButton.click();
     }
 
-    @When("User refreshes the page") // should probably be in UtilitySteps
-    public void user_refreshes_the_page() {
-        driver.navigate().refresh();
-    }
-
     @Then("The placeholder for the first name should be updated")
     public void the_placeholder_for_the_first_name_should_be_updated() {
         Assert.assertEquals(
@@ -385,6 +353,11 @@ public class ProfileSteps extends SeleniumSteps {
                 updateProfile.lastNameInput.getAttribute("value"),
                 (String) cache.get("lastName")
         );
+    }
+
+    @When("User sends {string} to new profile password input")
+    public void user_sends_to_new_profile_password_input(String newPassword) {
+        updateProfile.passwordInput.sendKeys(newPassword);
     }
 
 }

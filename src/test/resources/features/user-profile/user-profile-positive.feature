@@ -3,7 +3,7 @@
 Feature: user-profile-positive
 # should probably include a background clause
   Scenario: Adding Credit Card to Profile
-    Given User is logged in
+    Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
     Given User located the payment-management module
     When User types 4444333322221111 into card number field
@@ -14,7 +14,7 @@ Feature: user-profile-positive
     Then The new payment should be visible in the payment-table
 
   Scenario: Deleting a Credit Credit Card from Profile
-    Given User is logged in
+    Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
     Given User located the payment-management module
     Given User located the payment-table module
@@ -24,7 +24,7 @@ Feature: user-profile-positive
 
   @test
   Scenario: Updating Profiles Full Name
-    Given User is logged in
+    Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
     Given User located the update-profile module
     When User updates first name input
@@ -37,7 +37,13 @@ Feature: user-profile-positive
     And The placeholder for the second name should be updated
 
   Scenario: Updating Profile Password
-    Given User is logged in
+    Given User is logged in with "user-profile@onetime.com" and "guest"
+    And User is on profile page
+    And User located the update-profile module
+    When User sends "new password" to new profile password input
+    And User clicks the update profile button
+    And User signs out
+    Then User is logged in with "user-profile@onetime.com" and "new password"
 
   Scenario: Deactivating User Profile
     Given User is logged in

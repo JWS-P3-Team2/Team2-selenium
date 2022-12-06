@@ -7,7 +7,7 @@ Feature: user-profile-smoke
   # (module-name) module has (tagName) containing text (text)
   # (module-name) module has (property) /* will work better with page objects */
   Scenario: Viewing Profile Information
-    Given User is logged in
+    Given User is logged in with "user-profile@example.com" and "guest"
     Given User is on profile page
     Given User located the update-profile module
     Then update-profile module has input named firstName
