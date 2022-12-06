@@ -7,9 +7,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -331,6 +333,58 @@ public class ProfileSteps extends SeleniumSteps {
         if (paymentTable.rows.size() + 1 != oldCount) {
             throw new AssertionError("no payment was removed");
         }
+    }
+
+    @When("User updates first name input")
+    public void user_updates_first_name_input() {
+        String text = updateProfile.firstNameInput.getAttribute("value");
+        StringBuffer deleter = new StringBuffer();
+        for (int i = 0; i < text.length(); i++) {
+            deleter.append(Keys.BACK_SPACE);
+        }
+        updateProfile.firstNameInput.sendKeys(deleter.toString());
+        text = text + "+";
+        updateProfile.firstNameInput.sendKeys(text);
+        cache.put("firstName", text);
+    }
+
+    @When("User updates last name input")
+    public void user_updates_last_name_input() {
+        String text = updateProfile.lastNameInput.getAttribute("value");
+        StringBuffer deleter = new StringBuffer();
+        for (int i = 0; i < text.length(); i++) {
+            deleter.append(Keys.BACK_SPACE);
+        }
+        updateProfile.lastNameInput.sendKeys(deleter.toString());
+        text = text + "+";
+        updateProfile.lastNameInput.sendKeys(text);
+        cache.put("lastName", text);
+    }
+
+    @When("User clicks the update profile button")
+    public void user_clicks_the_update_profile_button() {
+        updateProfile.updateButton.click();
+    }
+
+    @When("User refreshes the page") // should probably be in UtilitySteps
+    public void user_refreshes_the_page() {
+        driver.navigate().refresh();
+    }
+
+    @Then("The placeholder for the first name should be updated")
+    public void the_placeholder_for_the_first_name_should_be_updated() {
+        Assert.assertEquals(
+                updateProfile.firstNameInput.getAttribute("value"),
+                (String) cache.get("firstName")
+        );
+    }
+
+    @Then("The placeholder for the second name should be updated")
+    public void the_placeholder_for_the_second_name_should_be_updated() {
+        Assert.assertEquals(
+                updateProfile.lastNameInput.getAttribute("value"),
+                (String) cache.get("lastName")
+        );
     }
 
 }

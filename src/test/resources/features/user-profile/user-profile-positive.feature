@@ -22,8 +22,19 @@ Feature: user-profile-positive
     When User clicks the delete payment button
     Then The payment should no longer be visible
 
+  @test
   Scenario: Updating Profiles Full Name
     Given User is logged in
+    Given User is on profile page
+    Given User located the update-profile module
+    When User updates first name input
+    And User updates last name input
+    And User clicks the update profile button
+    And User refreshes the page
+    Given User is on profile page
+    Given User located the update-profile module
+    Then The placeholder for the first name should be updated
+    And The placeholder for the second name should be updated
 
   Scenario: Updating Profile Password
     Given User is logged in
