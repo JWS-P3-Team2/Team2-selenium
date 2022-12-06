@@ -26,11 +26,17 @@ Feature: user-profile-negative
       | "123456789123456"         | "12-01-2077"  | ""    |
       | "123456789123456"         | "12-01-2077"  | "11"  |
 
-  @test
-  Scenario: User Updates Profile with Invalid Username
-    Given User is logged in with "user-profile@example.com" and "guest"
-    Given User is on profile page
+  Scenario: User tries to deactivate profile with bad key phrase
+    Given User is logged in with "user-profile@badkeyphrase.com" and "guest"
+    And User is on profile page
+    And User located the deactivate-account module
+    When User sends "deactivat" to deactivate account input
+    And User erroneously clicks the deactivate account button
+    And User signs out
+    And User is on login page
+    Then User is logged in with "user-profile@badkeyphrase.com" and "guest"
 
+  # users accessing areas that require authorization should be redirected to the login page
   Scenario: Unauthenticated User Navigates to Profile Page
-    Given User is logged in with "user-profile@example.com" and "guest"
-    Given User is on profile page
+    Given User erroneously is on profile page
+    Then User redirected to login page

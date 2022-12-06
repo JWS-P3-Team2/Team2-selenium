@@ -17,9 +17,10 @@ public class UtilitySteps extends SeleniumSteps {
 
     @When("User signs out")
     public void user_signs_out() {
-        driver.findElement(
+        WebElement signOut = driver.findElement(
                 By.xpath("//strong[text()='LOGOUT']")
         );
+        signOut.click();
     }
 
     @Given("User is logged in with {string} and {string}")
@@ -61,7 +62,24 @@ public class UtilitySteps extends SeleniumSteps {
             throw new AssertionError("user was able to login with deactivated account");
         }
         catch (TimeoutException e) {
-            // failure to login will result in a timeout exception
+            // failure to login will result in a timeout exception that should be ignored
+        }
+    }
+
+    @Given("User erroneously is on profile page")
+    public void user_erroneously_is_on_profile_page() {
+        driver.get(profileUrl);
+    }
+
+    @Then("User redirected to login page")
+    public void user_redirected_to_login_page() {
+        try {
+            wait.until(
+                    ExpectedConditions.urlMatches(loginUrl + "/?")
+            );
+        }
+        catch (TimeoutException e) {
+            throw new AssertionError("user was not redirected to login");
         }
     }
 

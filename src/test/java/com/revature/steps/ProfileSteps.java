@@ -5,6 +5,7 @@ import com.revature.pages.ProfilePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -367,6 +368,16 @@ public class ProfileSteps extends SeleniumSteps {
     @When("User clicks the deactivate account button")
     public void user_clicks_the_deactivate_account_button() {
         deactivateAccount.deactivateButton.click();
+    }
+
+    @When("User erroneously clicks the deactivate account button")
+    public void user_erroneously_clicks_the_deactivate_account_button() {
+        try {
+            deactivateAccount.deactivateButton.click();
+        }
+        catch (ElementClickInterceptedException e) {
+            // it is okay if this click is intercepted
+        }
     }
 
     @When("User types {string} into card number field")
