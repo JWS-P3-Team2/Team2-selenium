@@ -1,4 +1,4 @@
-package com.revature.modules.profile;
+package com.revature.modules;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;

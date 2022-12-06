@@ -1,12 +1,7 @@
 package com.revature.steps.selenium.profile;
 
 import com.revature.modules.*;
-import com.revature.modules.DeactivateAccountModule;
-import com.revature.modules.PaymentManagementModule;
-import com.revature.modules.PaymentRowModule;
-import com.revature.modules.UpdateProfileModule;
 import com.revature.pages.ProfilePage;
-
 import com.revature.steps.selenium.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
