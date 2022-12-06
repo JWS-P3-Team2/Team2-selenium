@@ -1,4 +1,4 @@
-package com.revature.steps.selenium;
+package com.revature.steps.bookended;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;

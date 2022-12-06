@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features="src/test/resources/features",
-        glue="com.revature.steps.selenium",
+        glue="com.revature.steps.bookended",
         tags="@user-profile"
 )
-public class SeleniumRunner extends AbstractTestNGCucumberTests {}
+public class BookendRunner extends AbstractTestNGCucumberTests {}

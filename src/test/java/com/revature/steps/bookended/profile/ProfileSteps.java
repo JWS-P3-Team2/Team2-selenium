@@ -1,8 +1,8 @@
-package com.revature.steps.selenium.profile;
+package com.revature.steps.bookended.profile;
 
 import com.revature.modules.*;
 import com.revature.pages.ProfilePage;
-import com.revature.steps.selenium.SeleniumSteps;
+import com.revature.steps.bookended.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
