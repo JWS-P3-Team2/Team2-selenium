@@ -1,3 +1,4 @@
+@notification
 Feature: A user should receive a notification when a transaction occurred
 
   Scenario: Notification following transaction
