@@ -1,4 +1,4 @@
-
+@product
 Feature: Create product
 
   Background:
@@ -15,8 +15,8 @@ Feature: Create product
     When User inputs <product description> in product description
     When User inputs <product image url> in product url
     When User inputs <product price> in product price
+    When User clicks create new product
     When User clicks back to products
-    Then An error message should appear
     Then The new product should not appear as the latest product
 
     Examples:

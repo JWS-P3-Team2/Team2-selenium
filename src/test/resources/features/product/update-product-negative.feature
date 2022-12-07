@@ -1,3 +1,5 @@
+@product
+
 Feature: Update product
 
   Background:
@@ -16,8 +18,7 @@ Feature: Update product
     When User inputs <product price> in product price on the update page
     When User clicks update
     When User clicks back to products
-    Then An error message should appear
-    Then The product should not be updated
+    Then The product should not be updated <product name> <product description> <product image url> <product price>
 
     Examples:
 
@@ -26,5 +27,6 @@ Feature: Update product
       | "Addy" | ""      | "anything"       | "111" |
       | "Addy" | "Admin"      | ""       | "111" |
       | "Addy" | "Admin"      | "anything"       | "" |
+      | "" | ""      | ""       | "" |
       | "Addy" | "Admin"      | "anything"       | "eeeee" |
 
