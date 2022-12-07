@@ -28,7 +28,6 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static Register registerPage;
 
     public static Profile profilePage;
-
     public static Cart cartPage;
 
     @BeforeMethod

@@ -21,7 +21,7 @@ public class ViewOrders {
     @When("User will click on Orders")
     public void userWillClickOnOrders() {
         MainRunner.wait.until(ExpectedConditions
-                .visibilityOf(MainRunner.homePage.orderLink)).click();
+                .visibilityOf(MainRunner.homePage.ordersLink)).click();
     }
 
     @Then("User will see all orders purchased and view details")
