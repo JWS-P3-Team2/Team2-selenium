@@ -22,6 +22,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static WebDriverWait wait;
     public static String webURL = "http://localhost:4200";
 
+    public static Orders ordersPage;
     public static Home homePage;
     public static Login loginPage;
     public static Register registerPage;
@@ -39,6 +40,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
         cartPage = new Cart(driver);
+        ordersPage = new Orders(driver);
     }
 
     @AfterMethod

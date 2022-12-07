@@ -33,6 +33,9 @@ public class Home {
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
 
+    @FindBy(xpath="//strong[text()='ORDERS']")
+    public WebElement ordersLink;
+
     @FindBy(xpath="//*[@class='MuiSwitch-root']")
     public WebElement darkModeBtn;
 
