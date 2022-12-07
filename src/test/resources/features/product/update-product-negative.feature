@@ -10,14 +10,14 @@ Feature: Update product
   Scenario Outline: An admin updates a new product with incorrect info
     When User clicks on edit products
     When User clicks on an existing product
-    When User inputs <product name> in product name
-    When User inputs <product description> in product description
-    When User inputs <product image url> in product url
-    When User inputs <product price> in product price
+    When User inputs <product name> in product name on the update page
+    When User inputs <product description> in product description on the update page
+    When User inputs <product image url> in product url on the update page
+    When User inputs <product price> in product price on the update page
     When User clicks update
     When User clicks back to products
     Then An error message should appear
-    Then The product should be updated
+    Then The product should not be updated
 
     Examples:
 

@@ -4,8 +4,12 @@ import com.revature.MainRunner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+
+import java.time.Duration;
+import java.util.List;
 
 public class CreateProduct {
     int productCounter;
@@ -17,7 +21,8 @@ public class CreateProduct {
     @When("User clicks on edit products")
     public void userClicksOnEditProducts() {
         productCounter = (MainRunner.driver.findElements(By.xpath("//div[3]/div/div")).size());
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.firstProduct));
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.editProductLink));
+        MainRunner.homePage.editProductLink.click();
     }
 
     @When("User clicks create new product")
@@ -29,7 +34,7 @@ public class CreateProduct {
 
     @When("User clicks back to products")
     public void userClicksBackToProducts() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.backToProduct));
+        MainRunner.wait.until(ExpectedConditions.elementToBeClickable(MainRunner.adminProduct.backToProduct));
         MainRunner.adminProduct.backToProduct.click();
 
     }
@@ -54,39 +59,43 @@ public class CreateProduct {
 
     @When("User inputs {string} in product name")
     public void userInputsProductName(String arg1) {
-        MainRunner.adminProduct.productInputs[0].sendKeys(arg1);
+        MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product description")
     public void userInputsProductDescription(String arg1) {
-        MainRunner.adminProduct.productInputs[1].sendKeys(arg1);
+        MainRunner.adminProduct.productInputs.get(2).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product url")
     public void userInputsProductUrl(String arg1) {
-        MainRunner.adminProduct.productInputs[2].sendKeys(arg1);
+        MainRunner.adminProduct.productInputs.get(3).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product price")
     public void userInputsProductPrice(String arg1) {
-        MainRunner.adminProduct.productInputs[3].sendKeys(arg1);
+        MainRunner.adminProduct.productInputs.get(4).sendKeys(arg1);
     }
     @When("User clicks update")
     public void userClicksUpdate() {
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.updateProduct));
+
         MainRunner.adminProduct.updateProduct.click();
     }
 
     @Then("The product should be updated {string} {string} {string} {string}")
     public void theProductShouldBeUpdated(String name, String description, String url, String price) {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        savedName = MainRunner.adminProduct.productNames[0].getAttribute("value");
-        savedDescription = MainRunner.adminProduct.productDescriptions[0].getAttribute("value");
-        savedUrl = MainRunner.adminProduct.productImages[0].getAttribute("src");
-        savedPrice = MainRunner.adminProduct.productPrices[0].getAttribute("value");
+        savedName = MainRunner.adminProduct.productNames.get(0).getText();
+        savedDescription = MainRunner.adminProduct.productDescriptions.get(0).getText();
+        savedUrl = MainRunner.adminProduct.productImages.get(0).getAttribute("src");
+        savedPrice = MainRunner.adminProduct.productPrices.get(0).getText();
+        savedPrice = savedPrice.replace("$","");
+
         Assert.assertEquals(savedName,name);
         Assert.assertEquals(savedDescription,description);
         Assert.assertEquals(savedUrl,url);
-        Assert.assertEquals(savedPrice,price);
+        Assert.assertEquals(String.valueOf((int)Double.parseDouble(savedPrice)),price);
 
     }
 
@@ -94,16 +103,43 @@ public class CreateProduct {
     public void theNewProductShouldAppearAsTheLatestProduct(String name, String description, String url, String price) {
 
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        int newProductSize = (MainRunner.driver.findElements(By.xpath("//div[3]/div/div")).size());
+        int newProductSize = MainRunner.adminProduct.productNames.size();
 
-        savedName = MainRunner.adminProduct.productNames[newProductSize - 1].getAttribute("value");
-        savedDescription = MainRunner.adminProduct.productDescriptions[newProductSize - 1].getAttribute("value");
-        savedUrl = MainRunner.adminProduct.productImages[newProductSize - 1].getAttribute("src");
-        savedPrice = MainRunner.adminProduct.productPrices[newProductSize - 1].getAttribute("value");
+        savedName = MainRunner.adminProduct.productNames.get(newProductSize - 1).getText();
+        savedDescription = MainRunner.adminProduct.productDescriptions.get(newProductSize - 1).getText();
+        savedUrl = MainRunner.adminProduct.productImages.get(newProductSize - 1).getAttribute("src");
+        savedPrice = MainRunner.adminProduct.productPrices.get(newProductSize - 1).getText();
+        savedPrice = savedPrice.replace("$","");
         Assert.assertEquals(savedName,name);
         Assert.assertEquals(savedDescription,description);
         Assert.assertEquals(savedUrl,url);
-        Assert.assertEquals(savedPrice,price);
+        Assert.assertEquals(String.valueOf((int)Double.parseDouble(savedPrice)),price);
         Assert.assertTrue(newProductSize > productCounter);
+    }
+
+    @When("User inputs {string} in product name on the update page")
+    public void userInputsProductNameInProductNameOnTheUpdatePage(String arg1) {
+        MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
+    }
+
+    @When("User inputs {string} in product description on the update page")
+    public void userInputsProductDescriptionInProductDescriptionOnTheUpdatePage(String arg1) {
+        MainRunner.adminProduct.productInputs.get(3).sendKeys(arg1);
+
+    }
+
+    @When("User inputs {string} in product url on the update page")
+    public void userInputsProductImageUrlInProductUrlOnTheUpdatePage(String arg1) {
+        MainRunner.adminProduct.productInputs.get(2).sendKeys(arg1);
+
+    }
+
+    @When("User inputs {string} in product price on the update page")
+    public void userInputsProductPriceInProductPriceOnTheUpdatePage(String arg1) {
+        MainRunner.adminProduct.productInputs.get(4).sendKeys(arg1);
+    }
+
+    @Then("The product should not be updated")
+    public void theProductShouldNotBeUpdated() {
     }
 }

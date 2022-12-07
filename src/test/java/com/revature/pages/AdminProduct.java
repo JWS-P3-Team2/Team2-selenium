@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class AdminProduct {
     public AdminProduct(WebDriver driver) {
         PageFactory.initElements(driver,this);
@@ -18,18 +20,18 @@ public class AdminProduct {
     @FindBy(xpath="//*/div[3]/div/button")
     public WebElement products;
 
-    @FindBy(xpath="//*[contains(@class, 'MuiInputBase-input MuiOutlinedInput-input css-h4os0j')]")
-    public WebElement[] productInputs;
+    @FindBy(xpath="//input")
+    public List<WebElement> productInputs;
 
     @FindBy(xpath="//button[contains(text(),'Update')]")
     public WebElement updateProduct;
 
     @FindBy(xpath="//*/div[3]/div/button/div/div/div/h5")
-    public WebElement[] productNames;
+    public List<WebElement> productNames;
     @FindBy(xpath="//*/div[3]/div/button/div/p")
-    public WebElement[] productDescriptions;
+    public List<WebElement> productDescriptions;
     @FindBy(xpath="//*/div[3]/div/button/div/div/div/div/h6")
-    public WebElement[] productPrices;
+    public List<WebElement> productPrices;
     @FindBy(xpath="//*/div[3]/div/button/img")
-    public WebElement[] productImages;
+    public List<WebElement> productImages;
 }

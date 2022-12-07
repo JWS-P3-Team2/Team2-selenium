@@ -11,10 +11,10 @@ Feature: Update product
   Scenario Outline: An admin updates a new product
     When User clicks on edit products
     When User clicks on an existing product
-    When User inputs <product name> in product name
-    When User inputs <product description> in product description
-    When User inputs <product image url> in product url
-    When User inputs <product price> in product price
+    When User inputs <product name> in product name on the update page
+    When User inputs <product description> in product description on the update page
+    When User inputs <product image url> in product url on the update page
+    When User inputs <product price> in product price on the update page
     When User clicks update
     When User clicks back to products
     Then The product should be updated <product name> <product description> <product image url> <product price>
@@ -22,5 +22,5 @@ Feature: Update product
     Examples:
 
       | product name | product description | product image url | product price |
-      | "Addy" | "Admin"      | "anything"       | "111" |
+      | "Addy2" | "Admin2"      | "https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp"       | "1111" |
 

@@ -28,8 +28,8 @@ public class Home {
 
     @FindBy(xpath="//strong[text()='EDIT PRODUCTS']")
     public WebElement editProductLink;
-    @FindBy(xpath="//div[3]/div[1]/div")
-    public WebElement firstProduct;
+//    @FindBy(xpath="//div[3]/div[1]/div")
+//    public WebElement firstProduct;
 
     @FindBy(xpath="//*[@class='MuiSwitch-root']")
     public WebElement darkModeBtn;

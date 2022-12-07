@@ -1,3 +1,4 @@
+
 Feature: Create product
 
   Background:
@@ -21,9 +22,9 @@ Feature: Create product
     Examples:
 
       | product name | product description | product image url | product price |
-      | "" | "Admin"      | "anything"       | "111" |
-      | "Addy" | ""      | "anything"       | "111" |
+      | "" | "Admin"      | "https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp"       | "111" |
+      | "Addy" | ""      | "https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp"       | "111" |
       | "Addy" | "Admin"      | ""       | "111" |
-      | "Addy" | "Admin"      | "anything"       | "" |
-      | "Addy" | "Admin"      | "anything"       | "eeeee" |
+      | "Addy" | "Admin"      | "https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp"       | "" |
+      | "Addy" | "Admin"      | "https://i.insider.com/54eb437f6bb3f7697f85da71?width=1000&format=jpeg&auto=webp"       | "eeeee" |
 
