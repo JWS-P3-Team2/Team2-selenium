@@ -26,6 +26,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static Register registerPage;
 
     public static Profile profilePage;
+    public static Cart cartPage;
 
     public static AdminProduct adminProduct;
     @BeforeMethod
@@ -38,6 +39,8 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
         adminProduct = new AdminProduct(driver);
+        cartPage = new Cart(driver);
+
     }
 
     @AfterMethod

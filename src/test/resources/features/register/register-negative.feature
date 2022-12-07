@@ -1,4 +1,5 @@
 @register
+@register-negative
 Feature: Register Negative
   Background: User is on the home page
     Given User is on the home page
@@ -10,12 +11,7 @@ Feature: Register Negative
     When User types <email> into email registration field
     When User types <password> into password registration field
     When User clicks Sign Up Button
-    When User waits for log in page
-    When User types <email> into email field
-    When User types <password> into password field
-    When User clicks Sign In Button
-    Then User should click on Profile link
-    Then User should see <firstname> in greeting
+    When User waits for log in page fruitlessly
 
     Examples:
     |firstname | lastname | email | password |
