@@ -3,13 +3,8 @@ package com.revature.steps.product;
 import com.revature.MainRunner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-
-import java.time.Duration;
-import java.util.List;
 
 public class CreateProduct {
     int productCounter;
@@ -18,17 +13,16 @@ public class CreateProduct {
     String savedUrl = "";
     String savedPrice = "";
 
-    private int countProducts() {
-        return MainRunner.wait.until(driver -> {
-            int count = MainRunner.homePage.allProducts.size();
-            if (count == 0) return null;
-            else return count;
+    private void awaitHomePageProducts() {
+        MainRunner.wait.until(driver -> {
+            return (MainRunner.homePage.allProducts.size() != 0);
         });
     }
 
     @When("User clicks on edit products")
     public void userClicksOnEditProducts() {
-        productCounter = countProducts();
+        awaitHomePageProducts();
+        productCounter = MainRunner.homePage.allProducts.size();
         MainRunner.homePage.editProductLink.click();
     }
 
@@ -54,8 +48,9 @@ public class CreateProduct {
 
     @Then("The new product should not appear as the latest product")
     public void theNewProductShouldNotAppearAsTheLatestProduct() {
-        int newProductSize = countProducts();
-        Assert.assertEquals(newProductSize,productCounter);
+        awaitHomePageProducts();
+        int newProductSize = MainRunner.homePage.allProducts.size();
+        Assert.assertEquals(newProductSize, productCounter);
     }
 
     @When("User clicks on an existing product")
@@ -89,7 +84,6 @@ public class CreateProduct {
     @When("User clicks update")
     public void userClicksUpdate() {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.updateProduct));
-
         MainRunner.adminProduct.updateProduct.click();
     }
 
@@ -112,9 +106,8 @@ public class CreateProduct {
     @Then("The new product should appear as the latest product {string} {string} {string} {string}")
     public void theNewProductShouldAppearAsTheLatestProduct(String name, String description, String url, String price) {
 
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        int newProductSize = MainRunner.adminProduct.productNames.size();
-
+        awaitHomePageProducts();
+        int newProductSize = MainRunner.homePage.allProducts.size();
         savedName = MainRunner.adminProduct.productNames.get(newProductSize - 1).getText();
         savedDescription = MainRunner.adminProduct.productDescriptions.get(newProductSize - 1).getText();
         savedUrl = MainRunner.adminProduct.productImages.get(newProductSize - 1).getAttribute("src");
@@ -124,7 +117,7 @@ public class CreateProduct {
         Assert.assertEquals(savedDescription,description);
         Assert.assertEquals(savedUrl,url);
         Assert.assertEquals(String.valueOf((int)Double.parseDouble(savedPrice)),price);
-        Assert.assertTrue(newProductSize > productCounter);
+        Assert.assertTrue(newProductSize == productCounter + 1);
     }
 
     @When("User inputs {string} in product name on the update page")
