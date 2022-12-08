@@ -18,11 +18,17 @@ public class CreateProduct {
     String savedUrl = "";
     String savedPrice = "";
 
+    private int countProducts() {
+        return MainRunner.wait.until(driver -> {
+            int count = MainRunner.homePage.allProducts.size();
+            if (count == 0) return null;
+            else return count;
+        });
+    }
+
     @When("User clicks on edit products")
     public void userClicksOnEditProducts() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.editProductLink));
-
-        productCounter = MainRunner.adminProduct.productNames.size();
+        productCounter = countProducts();
         MainRunner.homePage.editProductLink.click();
     }
 
@@ -48,9 +54,7 @@ public class CreateProduct {
 
     @Then("The new product should not appear as the latest product")
     public void theNewProductShouldNotAppearAsTheLatestProduct() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.editProductLink));
-
-        int newProductSize = MainRunner.adminProduct.productNames.size();
+        int newProductSize = countProducts();
         Assert.assertEquals(newProductSize,productCounter);
     }
 
