@@ -30,6 +30,13 @@ public class ProductSteps {
         });
     }
 
+    private void awaitModalAnimationEnd() {
+        MainRunner.wait.until(driver -> {
+            String opacity = MainRunner.homePage.productModal.getCssValue("opacity");
+            return opacity.equals("1");
+        });
+    }
+
     @When("User clicks on edit products")
     public void userClicksOnEditProducts() {
         awaitHomePageProducts();
@@ -72,7 +79,6 @@ public class ProductSteps {
     @When("User inputs {string} in product name")
     public void userInputsProductName(String arg1) {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
-
         MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
 
     }
@@ -132,7 +138,6 @@ public class ProductSteps {
     @When("User inputs {string} in product name on the update page")
     public void userInputsProductNameInProductNameOnTheUpdatePage(String arg1) {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.updateProduct));
-
         MainRunner.adminProduct.productInputs.get(1).clear();
         MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
     }
@@ -140,17 +145,13 @@ public class ProductSteps {
     @When("User inputs {string} in product description on the update page")
     public void userInputsProductDescriptionInProductDescriptionOnTheUpdatePage(String arg1) {
         MainRunner.adminProduct.productInputs.get(3).clear();
-
         MainRunner.adminProduct.productInputs.get(3).sendKeys(arg1);
-
     }
 
     @When("User inputs {string} in product url on the update page")
     public void userInputsProductImageUrlInProductUrlOnTheUpdatePage(String arg1) {
         MainRunner.adminProduct.productInputs.get(2).clear();
-
         MainRunner.adminProduct.productInputs.get(2).sendKeys(arg1);
-
     }
 
     @When("User inputs {string} in product price on the update page")
@@ -181,7 +182,7 @@ public class ProductSteps {
     }
 
     @Then("The user should review description of all products")
-    public void theUserShouldReviewDescriptionOfAllProducts() throws InterruptedException, IOException {
+    public void theUserShouldReviewDescriptionOfAllProducts() throws IOException {
         Actions action = new Actions(driver);
         WebElement descButton;
         awaitHomePageProducts();
@@ -191,8 +192,7 @@ public class ProductSteps {
             action.moveToElement(elem).perform();
             descButton = driver.findElement(By.xpath("//*[@id='root']/div[3]/div[" + i + "]/div/div[1]/div[2]/div"));
             descButton.click();
-            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.productModalCloseButton));
-            Thread.sleep(100);
+            awaitModalAnimationEnd();
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile, new File("target/screenshots/showProductDetails" + i + ".jpg"));
             MainRunner.homePage.productModalCloseButton.click();

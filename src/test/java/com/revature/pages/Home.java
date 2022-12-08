@@ -42,6 +42,9 @@ public class Home {
     @FindBy(xpath="//*[@class='MuiSwitch-root']")
     public WebElement darkModeBtn;
 
+    @FindBy(xpath="//div[@role='dialog']/parent::node()")
+    public WebElement productModal;
+
     @FindBy(tagName = "Body")
     public WebElement mainBody;
     
