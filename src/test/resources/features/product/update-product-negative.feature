@@ -6,7 +6,7 @@ Feature: Update product
     Given User is on the home page
     When User clicks on Sign In link
     When User types "admin@example.com" into email field
-    When User types "password" into password field
+    When User types "guest" into password field
     When User clicks Sign In Button
 
   Scenario Outline: An admin updates a new product with incorrect info
