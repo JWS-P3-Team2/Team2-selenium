@@ -12,6 +12,9 @@ public class Home {
     @FindBy(xpath="//strong[text()='SIGN IN']")
     public WebElement signInLink;
 
+    @FindBy(xpath="//strong[text()='ORDERS']")
+    public WebElement orderLink;
+
     @FindBy(xpath="//*[@id='customized-dialog-title']/button[2]")
     public WebElement productModalCloseButton;
 
@@ -33,11 +36,11 @@ public class Home {
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
 
-
     @FindBy(xpath="//strong[text()='EDIT PRODUCTS']")
     public WebElement editProductLink;
-//    @FindBy(xpath="//div[3]/div[1]/div")
-//    public WebElement firstProduct;
+
+    @FindBy(xpath="//strong[text()='ORDERS']")
+    public WebElement ordersLink;
 
     @FindBy(xpath="//*[@class='MuiSwitch-root']")
     public WebElement darkModeBtn;
