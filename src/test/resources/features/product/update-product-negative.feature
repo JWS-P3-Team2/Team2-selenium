@@ -23,10 +23,10 @@ Feature: Update product
     Examples:
 
       | product name | product description | product image url | product price |
-      | "" | "Admin"      | "anything"       | "111" |
-      | "Addy" | ""      | "anything"       | "111" |
-      | "Addy" | "Admin"      | ""       | "111" |
-      | "Addy" | "Admin"      | "anything"       | "" |
+      | "" | "Admin 1"      | "anything 1"       | "1" |
+      | "Addy 2" | ""      | "anything 2"       | "2" |
+      | "Addy 3" | "Admin 3"      | ""       | "3" |
+      | "Addy 4" | "Admin 4"      | "anything 4"       | "" |
       | "" | ""      | ""       | "" |
-      | "Addy" | "Admin"      | "anything"       | "eeeee" |
+      | "Addy 5" | "Admin 5"      | "anything 5"       | "eeeee" |
 
