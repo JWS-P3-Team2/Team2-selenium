@@ -6,7 +6,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-public class CreateProduct {
+public class ProductSteps {
     int productCounter;
     String savedName = "";
     String savedDescription = "";
@@ -163,4 +163,10 @@ public class CreateProduct {
         Assert.assertNotEquals(savedUrl,url);
         Assert.assertNotEquals(String.valueOf((int)Double.parseDouble(savedPrice)),price);
     }
+
+    @Then("The user should see a list of available products")
+    public void theUserShouldSeeAListOfAvailableProducts() {
+        awaitHomePageProducts();
+    }
+
 }
