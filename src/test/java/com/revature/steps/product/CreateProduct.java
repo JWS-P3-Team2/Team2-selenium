@@ -34,11 +34,9 @@ public class CreateProduct {
     
 
     @When("User clicks back to products")
-    public void userClicksBackToProducts() throws InterruptedException {
-        Thread.sleep(1000);
+    public void userClicksBackToProducts() {
         MainRunner.wait.until(ExpectedConditions.elementToBeClickable(MainRunner.adminProduct.backToProduct));
         MainRunner.adminProduct.backToProduct.click();
-
     }
 
     @Then("An error message should appear")
