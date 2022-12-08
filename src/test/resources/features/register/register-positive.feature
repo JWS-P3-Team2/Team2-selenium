@@ -1,4 +1,5 @@
 @register
+@register-positive
 Feature: Register Positive
   Background: User is on the home page
     Given User is on the home page
@@ -20,8 +21,8 @@ Feature: Register Positive
     Examples:
 
       |firstname | lastname | email | password |
-      | "Addy" | "Admin" |"admin@example.com" | "Password10#" |
-      | "Test" | "Testerson" |"test@example.com" | "Password10#" |
+      | "Addy" | "Admin" |"admin@new-register.com" | "Password10#" |
+      | "Test" | "Testerson" |"test@new-register.com" | "Password10#" |
       | "Cart" | "Testermill" |"cart-tester@example.com" | "Password10#" |
 
 
