@@ -1,3 +1,4 @@
+@product
 @product-details
 Feature: display-products
 

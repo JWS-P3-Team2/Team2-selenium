@@ -1,5 +1,5 @@
 @product
-
+@update-product-negative
 Feature: Update product
 
   Background:

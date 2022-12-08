@@ -1,5 +1,5 @@
 @product
-
+@create-product-positive
 Feature: Create product
 
   Background:
