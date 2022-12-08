@@ -1,5 +1,5 @@
 @crudcart
-Feature: Add Cart
+Feature: Adjust Quantity of Products in Cart
   Background: User is on home page
     Given User is on the home page
 

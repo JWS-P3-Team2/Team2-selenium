@@ -25,7 +25,6 @@ public class DisplayProducts {
         int i = 1;
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.firstProduct));
         for (WebElement elem : MainRunner.homePage.allProducts) {
-            System.out.println("It iterates!");
             MainRunner.wait.until(ExpectedConditions.visibilityOf(elem));
             action.moveToElement(elem).perform();
             descButton = driver.findElement(By.xpath("//*[@id='root']/div[3]/div[" + i + "]/div/div[1]/div[2]/div"));
@@ -33,7 +32,7 @@ public class DisplayProducts {
             MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.productModalCloseButton));
             Thread.sleep(100);
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("src/test/java/screenshots/showProductDetails" + i + ".jpg"));
+            FileUtils.copyFile(scrFile, new File("target/screenshots/showProductDetails" + i + ".jpg"));
             MainRunner.homePage.productModalCloseButton.click();
             i++;
         }

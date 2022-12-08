@@ -37,7 +37,7 @@ public class ViewOrders {
                         .click();
             Thread.sleep(100);
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("src/test/java/screenshots/showProductOrders" + i + ".jpg"));
+            FileUtils.copyFile(scrFile, new File("target/screenshots/showProductOrders" + i + ".jpg"));
             driver.navigate().back();
             MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.ordersPage.firstOrder));
         }
