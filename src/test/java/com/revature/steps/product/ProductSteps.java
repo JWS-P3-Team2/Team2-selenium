@@ -3,8 +3,19 @@ package com.revature.steps.product;
 import com.revature.MainRunner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+
+import java.io.File;
+import java.io.IOException;
+
+import static com.revature.MainRunner.driver;
 
 public class ProductSteps {
     int productCounter;
@@ -167,6 +178,27 @@ public class ProductSteps {
     @Then("The user should see a list of available products")
     public void theUserShouldSeeAListOfAvailableProducts() {
         awaitHomePageProducts();
+    }
+
+    @Then("The user should review description of all products")
+    public void theUserShouldReviewDescriptionOfAllProducts() throws InterruptedException, IOException {
+        Actions action = new Actions(driver);
+        WebElement descButton;
+        awaitHomePageProducts();
+        int i = 1;
+        for (WebElement elem : MainRunner.homePage.allProducts) {
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(elem));
+            action.moveToElement(elem).perform();
+            descButton = driver.findElement(By.xpath("//*[@id='root']/div[3]/div[" + i + "]/div/div[1]/div[2]/div"));
+            descButton.click();
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.productModalCloseButton));
+            Thread.sleep(100);
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("target/screenshots/showProductDetails" + i + ".jpg"));
+            MainRunner.homePage.productModalCloseButton.click();
+            i++;
+        }
+
     }
 
 }
