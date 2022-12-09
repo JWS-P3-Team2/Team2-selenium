@@ -9,7 +9,7 @@ public class DeactivateAccountModule extends FormModule {
     // Deactivate
 
     @CacheLookup
-    @FindBy(xpath="//button[text()='Deactivate']")
+    @FindBy(xpath=".//button[text()='Deactivate']")
     public WebElement submit;
 
 }

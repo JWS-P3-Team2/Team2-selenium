@@ -14,14 +14,14 @@ public class TableModule {
     @FindBy(tagName="thead")
     public WebElement thead;
 
-    @FindBy(xpath="//thead/th")
+    @FindBy(xpath="thead/th")
     public List<WebElement> headers;
 
     @CacheLookup
     @FindBy(tagName="tbody")
     public WebElement tbody;
 
-    @FindBy(xpath="//tbody/tr")
+    @FindBy(xpath="tbody/tr")
     public List<WebElement> rows;
     public List<RowModule> getRows() {
         return rows.stream().map(row -> {

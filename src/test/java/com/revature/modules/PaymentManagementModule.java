@@ -12,7 +12,7 @@ public class PaymentManagementModule extends FormModule {
     // ccv
 
     @CacheLookup
-    @FindBy(xpath="//button[text()='Add Payment']")
+    @FindBy(xpath=".//button[text()='Add Payment']")
     public WebElement submit;
 
     @CacheLookup

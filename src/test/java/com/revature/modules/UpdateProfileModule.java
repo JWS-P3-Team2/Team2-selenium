@@ -11,6 +11,6 @@ public class UpdateProfileModule extends FormModule {
     // password
 
     @CacheLookup
-    @FindBy(xpath="//button[text()='Update']")
+    @FindBy(xpath=".//button[text()='Update']")
     public WebElement submit;
 }

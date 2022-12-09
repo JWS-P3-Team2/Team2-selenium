@@ -433,7 +433,7 @@ public class ProfileSteps {
                 MainRunner.driver,
                 ProfilePage.class
         );
-        page.getUpdateProfile().get("expDate").sendKeys(expDate);
+        page.getPaymentManagement().get("expDate").sendKeys(expDate);
     }
     @When("User types {string} into ccv field")
     public void alt_user_types_into_ccv_field(String ccv) {

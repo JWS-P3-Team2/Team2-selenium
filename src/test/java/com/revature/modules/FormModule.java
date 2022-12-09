@@ -9,7 +9,7 @@ import java.util.List;
 public class FormModule {
 
     @CacheLookup
-    @FindBy(xpath = "//*[@name]")
+    @FindBy(xpath = ".//*[@name]")
     public List<WebElement> fields;
     public WebElement get(String name) {
         for (WebElement field : fields) {
