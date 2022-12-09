@@ -3,6 +3,7 @@ package com.revature.steps.register;
 import com.revature.MainRunner;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -54,6 +55,16 @@ public class RegisterPositive {
             MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.signInTitle));
         } catch (Exception e) {
             Assert.assertEquals(false, true, "Registration form not submitted");
+        }
+    }
+
+    @When("User waits for log in page fruitlessly")
+    public void userWaitsForLogInPageFruitlessly() {
+        try {
+            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.signInTitle));
+            Assert.fail("User did get logged in!");
+        } catch (TimeoutException e) {
+            //If we get here, this is good (negative test)
         }
     }
 }

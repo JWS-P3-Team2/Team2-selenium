@@ -1,4 +1,5 @@
 @login
+@login-positive
   Feature: Login Positive
 
   Background: User is on the home page
@@ -15,8 +16,8 @@
     Examples:
 
     |email | password | firstname |
-    |"admin@example.com"        | "password" |"Addy"|
-    |"testexample.com"          | "password" |"Testy"|
-    |"cart-tester@example.com"  | "password" |"Carty"|
+    |"admin@example.com"        | "guest" |"AdminFirst"|
+    |"test@example.com"         | "guest" |"TestFirst"|
+#    |"cart-tester@example.com"  | "password" |"Carty"|
 
 

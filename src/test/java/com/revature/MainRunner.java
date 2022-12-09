@@ -12,23 +12,28 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
-@CucumberOptions(features="src/test/resources/features",
-        glue="com.revature.steps")
+@CucumberOptions(
+        features="src/test/resources/features",
+        glue="com.revature.steps"
+)
+
 public class MainRunner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static String webURL = "http://localhost:4200";
-
+    public static Orders ordersPage;
     public static Home homePage;
     public static Login loginPage;
     public static Register registerPage;
-
     public static Profile profilePage;
+    public static YourBag yourBagPage;
+    public static Checkout checkoutPage;
+    public static Cart cartPage;
 
     public static Review reviewPage;
 
     @BeforeMethod
-    public void setup() throws InterruptedException {
+    public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(2));
@@ -37,6 +42,10 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
         reviewPage = new Review(driver);
+        yourBagPage = new YourBag(driver);
+        checkoutPage = new Checkout(driver);
+        cartPage = new Cart(driver);
+        ordersPage = new Orders(driver);
     }
 
     @AfterMethod
