@@ -53,7 +53,7 @@ public class ProductSteps {
 
     @When("User clicks back to products")
     public void userClicksBackToProducts() {
-        MainRunner.wait.until(ExpectedConditions.urlContains("product"));
+        MainRunner.wait.until(ExpectedConditions.urlMatches("/admin/product/\\d+$"));
         MainRunner.adminProduct.backToProduct.click();
     }
 
