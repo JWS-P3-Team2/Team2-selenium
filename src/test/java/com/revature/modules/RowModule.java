@@ -4,12 +4,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-public class DeactivateAccountModule extends FormModule {
+import java.util.List;
 
-    // Deactivate
+public class RowModule {
 
     @CacheLookup
-    @FindBy(xpath="//button[text()='Deactivate']")
-    public WebElement submit;
+    @FindBy(xpath = "td")
+    public List<WebElement> data;
 
 }

@@ -11,6 +11,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 @CucumberOptions(
         features="src/test/resources/features",
@@ -20,6 +22,10 @@ import java.time.Duration;
 public class MainRunner extends AbstractTestNGCucumberTests {
     public static WebDriver driver;
     public static WebDriverWait wait;
+    public static Map<String, Object> cache = new HashMap<>();
+    public static String profileUrl = "http://localhost:4200/userProfile";
+    public static String loginUrl = "http://localhost:4200/login";
+    public static String homeUrl = "http://localhost:4200";
     public static String webURL = "http://localhost:4200";
     public static Orders ordersPage;
     public static Home homePage;
@@ -46,5 +52,8 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     }
 
     @AfterMethod
-    public void cleanup() { driver.quit(); }
+    public void cleanup() {
+        driver.quit();
+        cache.clear();
+    }
 }
