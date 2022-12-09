@@ -14,7 +14,8 @@ import java.time.Duration;
 
 @CucumberOptions(
         features="src/test/resources/features",
-        glue="com.revature.steps"
+        glue="com.revature.steps",
+        tags = "@checkout"
 )
 
 public class MainRunner extends AbstractTestNGCucumberTests {
