@@ -44,16 +44,16 @@ public class ProductSteps {
         MainRunner.homePage.editProductLink.click();
     }
 
-    @When("User clicks create new product")
+    @When("User clicks create new product on create product page")
     public void userClicksCreateNewProduct() {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
-        MainRunner.adminProduct.createNew.click();
+        MainRunner.adminCreateProduct.createNew.click();
     }
     
 
     @When("User clicks back to products")
     public void userClicksBackToProducts() {
-        MainRunner.wait.until(ExpectedConditions.elementToBeClickable(MainRunner.adminProduct.backToProduct));
+        MainRunner.wait.until(ExpectedConditions.urlContains("product"));
         MainRunner.adminProduct.backToProduct.click();
     }
 
@@ -71,8 +71,8 @@ public class ProductSteps {
 
     @When("User clicks on an existing product")
     public void userClicksOnAnExistingProduct() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        MainRunner.adminProduct.products.click();
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
+        MainRunner.adminCreateProduct.products.click();
 
     }
 
@@ -104,11 +104,11 @@ public class ProductSteps {
 
     @Then("The product should be updated {string} {string} {string} {string}")
     public void theProductShouldBeUpdated(String name, String description, String url, String price) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        savedName = MainRunner.adminProduct.productNames.get(0).getText();
-        savedDescription = MainRunner.adminProduct.productDescriptions.get(0).getText();
-        savedUrl = MainRunner.adminProduct.productImages.get(0).getAttribute("src");
-        savedPrice = MainRunner.adminProduct.productPrices.get(0).getText();
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
+        savedName = MainRunner.adminCreateProduct.productNames.get(0).getText();
+        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(0).getText();
+        savedUrl = MainRunner.adminCreateProduct.productImages.get(0).getAttribute("src");
+        savedPrice = MainRunner.adminCreateProduct.productPrices.get(0).getText();
         savedPrice = savedPrice.replace("$","");
 
         Assert.assertEquals(savedName,name);
@@ -123,10 +123,10 @@ public class ProductSteps {
 
         awaitHomePageProducts();
         int newProductSize = MainRunner.homePage.allProducts.size();
-        savedName = MainRunner.adminProduct.productNames.get(newProductSize - 1).getText();
-        savedDescription = MainRunner.adminProduct.productDescriptions.get(newProductSize - 1).getText();
-        savedUrl = MainRunner.adminProduct.productImages.get(newProductSize - 1).getAttribute("src");
-        savedPrice = MainRunner.adminProduct.productPrices.get(newProductSize - 1).getText();
+        savedName = MainRunner.adminCreateProduct.productNames.get(newProductSize - 1).getText();
+        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(newProductSize - 1).getText();
+        savedUrl = MainRunner.adminCreateProduct.productImages.get(newProductSize - 1).getAttribute("src");
+        savedPrice = MainRunner.adminCreateProduct.productPrices.get(newProductSize - 1).getText();
         savedPrice = savedPrice.replace("$","");
         Assert.assertEquals(savedName,name);
         Assert.assertEquals(savedDescription,description);
@@ -163,11 +163,11 @@ public class ProductSteps {
 
     @Then("The product should not be updated {string} {string} {string} {string}")
     public void theProductShouldNotBeUpdated(String name, String description, String url, String price) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.products));
-        savedName = MainRunner.adminProduct.productNames.get(0).getText();
-        savedDescription = MainRunner.adminProduct.productDescriptions.get(0).getText();
-        savedUrl = MainRunner.adminProduct.productImages.get(0).getAttribute("src");
-        savedPrice = MainRunner.adminProduct.productPrices.get(0).getText();
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
+        savedName = MainRunner.adminCreateProduct.productNames.get(0).getText();
+        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(0).getText();
+        savedUrl = MainRunner.adminCreateProduct.productImages.get(0).getAttribute("src");
+        savedPrice = MainRunner.adminCreateProduct.productPrices.get(0).getText();
         savedPrice = savedPrice.replace("$","");
 
         Assert.assertNotEquals(savedName,name);
@@ -201,4 +201,9 @@ public class ProductSteps {
 
     }
 
+    @When("User clicks create new product on admin product page")
+    public void userClicksCreateNewProductOnAdminProduct() {
+        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
+        MainRunner.adminProduct.createNew.click();
+    }
 }

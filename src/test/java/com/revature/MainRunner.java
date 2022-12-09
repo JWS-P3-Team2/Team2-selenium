@@ -31,6 +31,8 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static Checkout checkoutPage;
     public static Cart cartPage;
     public static AdminProduct adminProduct;
+
+    public static AdminCreateProduct adminCreateProduct;
     @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
@@ -45,6 +47,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         checkoutPage = new Checkout(driver);
         cartPage = new Cart(driver);
         ordersPage = new Orders(driver);
+        adminCreateProduct = new AdminCreateProduct(driver);
     }
 
     @AfterMethod

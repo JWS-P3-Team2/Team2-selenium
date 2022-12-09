@@ -17,21 +17,11 @@ public class AdminProduct {
     @FindBy(xpath="//*/div[2]/div/div/div[1]/button")
     public WebElement backToProduct;
 
-    @FindBy(xpath="//*/div[3]/div/button")
-    public WebElement products;
-
     @FindBy(xpath="//input")
     public List<WebElement> productInputs;
 
     @FindBy(xpath="//button[contains(text(),'Update')]")
     public WebElement updateProduct;
 
-    @FindBy(xpath="//*/div[3]/div/button/div/div/div/h5")
-    public List<WebElement> productNames;
-    @FindBy(xpath="//*/div[3]/div/button/div/p")
-    public List<WebElement> productDescriptions;
-    @FindBy(xpath="//*/div[3]/div/button/div/div/div/div/h6")
-    public List<WebElement> productPrices;
-    @FindBy(xpath="//*/div[3]/div/button/img")
-    public List<WebElement> productImages;
+
 }
