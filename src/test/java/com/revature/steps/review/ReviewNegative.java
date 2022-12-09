@@ -67,8 +67,8 @@ public class ReviewNegative {
     @When("I fill in the email and password fields with valid credentials")
     public void iFillInTheEmailAndPasswordFieldsWithValidCredentials() {
         MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.email));
-        MainRunner.loginPage.email.sendKeys("bobby@gmail.com");
-        MainRunner.loginPage.password.sendKeys("password");
+        MainRunner.loginPage.email.sendKeys("test@example.com");
+        MainRunner.loginPage.password.sendKeys("guest");
     }
 
     @And("I click the sign in button")

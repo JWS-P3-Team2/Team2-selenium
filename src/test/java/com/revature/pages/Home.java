@@ -25,7 +25,7 @@ public class Home {
     @FindBy(xpath="//body/div[@id='root']/div[2]/div[1]/button[1]")
     public WebElement searchButton;
 
-    @FindBy(xpath="/html[1]/body[1]/div[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[1]/h5[1]")
+    @FindBy(xpath="//body/div[@id='root']/div[3]")
     public WebElement searchResultHeader;
 
 }

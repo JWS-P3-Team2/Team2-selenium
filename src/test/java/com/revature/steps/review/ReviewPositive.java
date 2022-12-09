@@ -18,9 +18,13 @@ public class ReviewPositive {
 
     @Then("I should see the review under product reviews with {string}")
     public void iShouldSeeTheReviewUnderProductReviewsWithString(String string) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.reviewPage.reviewTextModal));
-        String reviewText = MainRunner.reviewPage.reviewTextModal.getText();
-        Assert.assertEquals(reviewText, string);
+        try {
+            MainRunner.wait.until(ExpectedConditions.textToBePresentInElement(MainRunner.reviewPage.reviewTextModal, string));
+            String reviewText = MainRunner.reviewPage.reviewTextModal.getText();
+            Assert.assertEquals(reviewText, string);
+        } catch (Exception e) {
+            Assert.fail();
+        }
     }
 
     @And("I click the submit button on the modal")
