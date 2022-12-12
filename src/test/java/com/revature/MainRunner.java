@@ -12,9 +12,11 @@ import org.testng.annotations.BeforeMethod;
 
 import java.time.Duration;
 
+
 @CucumberOptions(
         features="src/test/resources/features",
-        glue="com.revature.steps"
+        glue="com.revature.steps",
+        tags = "@checkout"
 )
 
 public class MainRunner extends AbstractTestNGCucumberTests {
@@ -29,8 +31,9 @@ public class MainRunner extends AbstractTestNGCucumberTests {
     public static YourBag yourBagPage;
     public static Checkout checkoutPage;
     public static Cart cartPage;
-
+    public static AdminProduct adminProduct;
     public static Review reviewPage;
+    public static AdminCreateProduct adminCreateProduct;
 
     @BeforeMethod
     public void setup() {
@@ -42,10 +45,12 @@ public class MainRunner extends AbstractTestNGCucumberTests {
         registerPage = new Register(driver);
         profilePage = new Profile(driver);
         reviewPage = new Review(driver);
+        adminProduct = new AdminProduct(driver);
         yourBagPage = new YourBag(driver);
         checkoutPage = new Checkout(driver);
         cartPage = new Cart(driver);
         ordersPage = new Orders(driver);
+        adminCreateProduct = new AdminCreateProduct(driver);
     }
 
     @AfterMethod

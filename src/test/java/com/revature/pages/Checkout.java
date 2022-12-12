@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class Checkout {
     public Checkout(WebDriver driver) {
         PageFactory.initElements(driver,this);
@@ -34,4 +36,18 @@ public class Checkout {
     @FindBy(xpath = "//h6")
     public WebElement notificationMessage;
 
+    @FindBy(xpath = "//p[@id='firstName-helper-text']")
+    public List<WebElement> firstNameInputToolTip;
+    @FindBy(xpath = "//p[@id='lastName-helper-text']")
+    public List<WebElement> lastNameInputInputToolTip;
+    @FindBy(xpath = "//p[@id='address1-helper-text']")
+    public List<WebElement> addressInputInputToolTip;
+    @FindBy(xpath = "//p[@id='city-helper-text']")
+    public List<WebElement> cityInputInputToolTip;
+    @FindBy(xpath = "//p[@id='state-helper-text']")
+    public List<WebElement> stateInputInputToolTip;
+    @FindBy(xpath = "//p[@id='zip-helper-text']")
+    public List<WebElement> zipInputInputToolTip;
+    @FindBy(xpath = "//p[@id='country-helper-text']")
+    public List<WebElement> countryInputInputToolTip;
 }

@@ -1,3 +1,4 @@
+@product
 @product-details
 Feature: display-products
 
@@ -13,4 +14,3 @@ Feature: display-products
       |email | password |
       |"admin@example.com"        | "guest" |
       |"test@example.com"         | "guest" |
-      |"cart-tester@example.com"  | "password" |

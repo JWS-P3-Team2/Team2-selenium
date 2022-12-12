@@ -12,9 +12,6 @@ public class Home {
     @FindBy(xpath="//strong[text()='SIGN IN']")
     public WebElement signInLink;
 
-    @FindBy(xpath="//strong[text()='ORDERS']")
-    public WebElement orderLink;
-
     @FindBy(xpath="//*[@id='customized-dialog-title']/button[2]")
     public WebElement productModalCloseButton;
 
@@ -45,11 +42,18 @@ public class Home {
     @FindBy(xpath="//body/div[@id='root']/div[3]")
     public WebElement searchResultHeader;
 
+    @FindBy(xpath="//strong[text()='EDIT PRODUCTS']")
+    public WebElement editProductLink;
+
+
     @FindBy(xpath="//strong[text()='ORDERS']")
     public WebElement ordersLink;
 
     @FindBy(xpath="//*[@class='MuiSwitch-root']")
     public WebElement darkModeBtn;
+
+    @FindBy(xpath="//div[@role='dialog']/parent::node()")
+    public WebElement productModal;
 
     @FindBy(tagName = "Body")
     public WebElement mainBody;
@@ -57,4 +61,5 @@ public class Home {
     public Home(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
+
 }
