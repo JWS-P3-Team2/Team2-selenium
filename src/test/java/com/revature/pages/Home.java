@@ -33,8 +33,18 @@ public class Home {
     @FindBy(xpath="//strong[text()='PROFILE']")
     public WebElement profileLink;
 
+    @FindBy(xpath="//body/div[@id='root']/div[2]/div[1]/div[1]/input[1]")
+    public WebElement searchInput;
+
+    @FindBy(xpath="//body/div[@id='root']/div[2]/div[1]/button[1]")
+    public WebElement searchButton;
+
+    @FindBy(xpath="//body/div[@id='root']/div[3]")
+    public WebElement searchResultHeader;
+
     @FindBy(xpath="//strong[text()='EDIT PRODUCTS']")
     public WebElement editProductLink;
+
 
     @FindBy(xpath="//strong[text()='ORDERS']")
     public WebElement ordersLink;
