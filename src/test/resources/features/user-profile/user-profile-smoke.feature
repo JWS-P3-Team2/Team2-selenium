@@ -29,8 +29,5 @@ Feature: user-profile-smoke
     Then payment-table headers contains CCV
     Then payment-table headers contains Action
     Given User located a payment-row module
-    Then payment-row cardNumber
-    Then payment-row expirationDate
-    Then payment-row ccv
-    Then payment-row deleteButton
+    Then payment-row has deleteButton
 
