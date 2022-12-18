@@ -1,4 +1,4 @@
-package com.revature.runner;
+package com.revature.runners;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
@@ -7,6 +7,6 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features="src/test/resources/features",
         glue="com.revature.steps",
-        tags = "@register"
+        tags = ""
 )
-public class RegisterRunner extends AbstractTestNGCucumberTests {}
+public class MainRunner extends AbstractTestNGCucumberTests {}
