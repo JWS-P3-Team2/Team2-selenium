@@ -1,163 +1,105 @@
 package com.revature.steps;
 
-import com.revature.MainRunner;
+import com.revature.Urls;
 import com.revature.modules.*;
 import com.revature.pages.ProfilePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.it.Ma;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.reporters.jq.Main;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class ProfileSteps {
+public class ProfileSteps extends SeleniumSteps {
 
     @Given("User is on profile page")
     public void user_is_on_profile_page() {
-        MainRunner.driver.get(MainRunner.profileUrl);
-        MainRunner.wait.until(ExpectedConditions.urlToBe(MainRunner.profileUrl));
+        driver.get(Urls.profile);
+        wait.until(ExpectedConditions.urlToBe(Urls.profile));
+        profilePage = PageFactory.initElements(
+                driver,
+                ProfilePage.class
+        );
     }
 
     @Given("User located the update-profile module")
     public void user_located_the_update_profile_module() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getUpdateProfile();
+        profilePage.getUpdateProfile();
     }
 
     @Then("update-profile module has input named firstName")
     public void update_profile_module_has_input_named_first_name() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getUpdateProfile().get("firstName");
+        profilePage.getUpdateProfile().get("firstName");
     }
 
     @Then("update-profile module has input named lastName")
     public void update_profile_module_has_input_named_last_name() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getUpdateProfile().get("lastName");
+        profilePage.getUpdateProfile().get("lastName");
     }
 
     @Then("update-profile module has input named password")
     public void update_profile_module_has_input_named_password() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getUpdateProfile().get("password");
+        profilePage.getUpdateProfile().get("password");
     }
 
     @Then("update-profile module has button containing text Update")
     public void update_profile_module_has_button_containing_text_update() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement button = page.getUpdateProfile().submit;
+        WebElement button = profilePage.getUpdateProfile().submit;
     }
 
     @Given("User located the deactivate-account module")
     public void user_located_the_deactivate_account_module() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getDeactivateAccount();
+        profilePage.getDeactivateAccount();
     }
 
     @Then("deactivate-account has deactivateInput")
     public void deactivate_account_has_deactivate_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getDeactivateAccount().get("Deactivate");
+        profilePage.getDeactivateAccount().get("Deactivate");
     }
 
     @Then("deactivate-account has deactivateButton")
     public void deactivate_account_has_deactivate_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement button = page.getDeactivateAccount().submit;
+        WebElement button = profilePage.getDeactivateAccount().submit;
     }
 
     @Given("User located the payment-management module")
     public void user_located_the_payment_management_module() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement();
+        profilePage.getPaymentManagement();
     }
 
     @Then("payment-management has cardNumberInput")
     public void payment_management_has_card_number_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get("cardNumber");
+        profilePage.getPaymentManagement().get("cardNumber");
     }
 
     @Then("payment-management has expirationInput")
     public void payment_management_has_expiration_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get("expDate");
+        profilePage.getPaymentManagement().get("expDate");
     }
 
     @Then("payment-management has ccvInput")
     public void payment_management_has_ccv_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get("ccv");
+        profilePage.getPaymentManagement().get("ccv");
     }
 
     @Then("payment-management has addButton")
     public void payment_management_has_add_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement button = page.getPaymentManagement().submit;
+        WebElement button = profilePage.getPaymentManagement().submit;
     }
 
     @Given("User located the payment-table module")
     public void user_located_the_payment_table_module() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().getPaymentTable();
+        profilePage.getPaymentManagement().getPaymentTable();
     }
 
     @Then("^payment-table headers contains (.+)$")
     public void payment_table_headers_contains(String heading) {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        PaymentTableModule paymentTable = page
+        PaymentTableModule paymentTable = profilePage
                 .getPaymentManagement()
                 .getPaymentTable();
         List<String> paymentHeaderText = paymentTable.headers.stream().map(
@@ -168,11 +110,7 @@ public class ProfileSteps {
 
     @Given("User located a payment-row module")
     public void user_located_a_payment_row_module() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        PaymentRowModule row = page
+        PaymentRowModule row = profilePage
                 .getPaymentManagement()
                 .getPaymentTable()
                 .getPaymentRows()
@@ -181,11 +119,7 @@ public class ProfileSteps {
 
     @Then("payment-row has deleteButton")
     public void payment_row_delete_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        PaymentRowModule row = page
+        PaymentRowModule row = profilePage
                 .getPaymentManagement()
                 .getPaymentTable()
                 .getPaymentRows()
@@ -195,12 +129,8 @@ public class ProfileSteps {
 
     @When("^User types (\\d+) into card number field$")
     public void user_types_into_card_number_field(String cardNumber) {
-        MainRunner.cache.put("cardNumber", cardNumber);
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get(
+        cache.put("cardNumber", cardNumber);
+        profilePage.getPaymentManagement().get(
                 "cardNumber"
         ).sendKeys(cardNumber);
     }
@@ -215,54 +145,40 @@ public class ProfileSteps {
         buffer.append(calendar.get(GregorianCalendar.MONTH));
         buffer.append('-');
         buffer.append(calendar.get(GregorianCalendar.YEAR));
-        MainRunner.cache.put("expiration", buffer.toString());
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get(
+        cache.put("expiration", buffer.toString());
+        profilePage.getPaymentManagement().get(
                 "expDate"
         ).sendKeys(buffer.toString());
     }
 
     @When("^User types (\\d+) into ccv field$")
     public void user_types_into_ccv_field(String ccv) {
-        MainRunner.cache.put("ccv", ccv);
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get(
+        cache.put("ccv", ccv);
+        profilePage.getPaymentManagement().get(
                 "ccv"
         ).sendKeys(ccv);
     }
 
     @When("User clicks the add payment button")
     public void user_clicks_the_add_payment_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().submit.click();
+        profilePage.getPaymentManagement().submit.click();
     }
 
     @Then("The new payment should be visible in the payment-table")
     public void the_new_payment_should_be_visible_in_the_payment_table() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        PaymentTableModule table = page.getPaymentManagement().getPaymentTable();
-        MainRunner.wait.until(driver -> {
+        PaymentTableModule table = profilePage
+                .getPaymentManagement()
+                .getPaymentTable();
+        wait.until(driver -> {
             PaymentRowModule last = table.getPaymentRows().get(
                     table.getPaymentRows().size() - 1
             );
             return (
               last.data.get(0).getText().equals(
-                      (String) MainRunner.cache.get("cardNumber")
+                      (String) cache.get("cardNumber")
               ) &&
               last.data.get(2).getText().equals(
-                      (String) MainRunner.cache.get("ccv")
+                      (String) cache.get("ccv")
               )
             );
         });
@@ -272,15 +188,11 @@ public class ProfileSteps {
     public void user_clicks_the_delete_payment_button() {
         // the easiest way to see if something is deleted
         // is to count the total elements before and after deletion
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-       List<PaymentRowModule> rows = page
+       List<PaymentRowModule> rows = profilePage
                .getPaymentManagement()
                .getPaymentTable()
                .getPaymentRows();
-        MainRunner.cache.put(
+        cache.put(
                 "paymentCount",
                 rows.size()
         );
@@ -291,17 +203,13 @@ public class ProfileSteps {
 
     @Then("The payment should no longer be visible")
     public void the_payment_should_no_longer_be_visible() {
-        Integer oldCount = (Integer) MainRunner.cache.get("paymentCount");
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        List<PaymentRowModule> rows = page
+        Integer oldCount = (Integer) cache.get("paymentCount");
+        List<PaymentRowModule> rows = profilePage
                 .getPaymentManagement()
                 .getPaymentTable()
                 .getPaymentRows();
         try {
-            MainRunner.wait.until(driver -> {
+            wait.until(driver -> {
                 // will move on when one payment option goes missing
                 return rows.size() + 1 == oldCount;
             });
@@ -315,11 +223,7 @@ public class ProfileSteps {
 
     @When("User updates first name input")
     public void user_updates_first_name_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getUpdateProfile().get("firstName");
+        WebElement input = profilePage.getUpdateProfile().get("firstName");
         String text = input.getAttribute("value");
         StringBuffer deleter = new StringBuffer();
         for (int i = 0; i < text.length(); i++) {
@@ -328,16 +232,14 @@ public class ProfileSteps {
         input.sendKeys(deleter.toString()); // should be helper function
         text = text + "+";
         input.sendKeys(text);
-        MainRunner.cache.put("firstName", text);
+        cache.put("firstName", text);
     }
 
     @When("User updates last name input")
     public void user_updates_last_name_input() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getUpdateProfile().get("lastName");
+        WebElement input = profilePage
+                .getUpdateProfile()
+                .get("lastName");
         String text = input.getAttribute("value");
         StringBuffer deleter = new StringBuffer();
         for (int i = 0; i < text.length(); i++) {
@@ -346,71 +248,47 @@ public class ProfileSteps {
         input.sendKeys(deleter.toString()); // should be helper function
         text = text + "+";
         input.sendKeys(text);
-        MainRunner.cache.put("lastName", text);
+        cache.put("lastName", text);
     }
 
     @When("User clicks the update profile button")
     public void user_clicks_the_update_profile_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getUpdateProfile().submit.click();
+        profilePage.getUpdateProfile().submit.click();
     }
 
     @Then("The placeholder for the first name should be updated")
     public void the_placeholder_for_the_first_name_should_be_updated() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getUpdateProfile().get("firstName");
+        WebElement input = profilePage.getUpdateProfile().get("firstName");
         Assert.assertEquals(
                 input.getAttribute("value"),
-                (String) MainRunner.cache.get("firstName")
+                (String) cache.get("firstName")
         );
     }
 
     @Then("The placeholder for the second name should be updated")
     public void the_placeholder_for_the_second_name_should_be_updated() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getUpdateProfile().get("lastName");
+        WebElement input = profilePage.getUpdateProfile().get("lastName");
         Assert.assertEquals(
                 input.getAttribute("value"),
-                (String) MainRunner.cache.get("lastName")
+                (String) cache.get("lastName")
         );
     }
 
     @When("User sends {string} to new profile password input")
     public void user_sends_to_new_profile_password_input(String newPassword) {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getUpdateProfile().get("password");
+        WebElement input = profilePage.getUpdateProfile().get("password");
         input.sendKeys(newPassword);
     }
 
     @When("User sends {string} to deactivate account input")
     public void user_sends_to_deactivate_account_input(String keyPhrase) {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        WebElement input = page.getDeactivateAccount().get("Deactivate");
+        WebElement input = profilePage.getDeactivateAccount().get("Deactivate");
         input.sendKeys(keyPhrase);
     }
 
     @When("User clicks the deactivate account button")
     public void user_clicks_the_deactivate_account_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getDeactivateAccount().submit.click();
+        profilePage.getDeactivateAccount().submit.click();
     }
 
     @When("User erroneously clicks the deactivate account button")
@@ -429,11 +307,7 @@ public class ProfileSteps {
     }
     @When("User types {string} for the expiration field")
     public void user_types_for_the_expiration_field(String expDate) {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        page.getPaymentManagement().get("expDate").sendKeys(expDate);
+        profilePage.getPaymentManagement().get("expDate").sendKeys(expDate);
     }
     @When("User types {string} into ccv field")
     public void alt_user_types_into_ccv_field(String ccv) {
@@ -441,12 +315,8 @@ public class ProfileSteps {
     }
     @When("User erroneously clicks the add payment button")
     public void user_erroneously_clicks_the_add_payment_button() {
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        PaymentManagementModule form = page.getPaymentManagement();
-        MainRunner.cache.put(
+        PaymentManagementModule form = profilePage.getPaymentManagement();
+        cache.put(
                 "paymentCount",
                 form.getPaymentTable().rows.size()
         );
@@ -454,18 +324,14 @@ public class ProfileSteps {
     }
     @Then("The new payment should not be visible in the payment-table")
     public void the_new_payment_should_not_be_visible_in_the_payment_table() {
-        Integer oldCount = (Integer) MainRunner.cache.get("paymentCount");
-        ProfilePage page = PageFactory.initElements(
-                MainRunner.driver,
-                ProfilePage.class
-        );
-        List<WebElement> rows = page
+        Integer oldCount = (Integer) cache.get("paymentCount");
+        List<WebElement> rows = profilePage
                 .getPaymentManagement()
                 .getPaymentTable()
                 .rows;
         try {
             // will throw an AssertionError if a payment is added
-            MainRunner.wait.until(driver -> {
+            wait.until(driver -> {
                 return oldCount + 1 == rows.size();
             });
             throw new AssertionError(

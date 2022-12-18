@@ -1,6 +1,6 @@
 package com.revature.steps.product;
 
-import com.revature.MainRunner;
+import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.io.FileUtils;
@@ -15,9 +15,7 @@ import org.testng.Assert;
 import java.io.File;
 import java.io.IOException;
 
-import static com.revature.MainRunner.driver;
-
-public class ProductSteps {
+public class ProductSteps extends SeleniumSteps {
     int productCounter;
     String savedName = "";
     String savedDescription = "";
@@ -25,14 +23,14 @@ public class ProductSteps {
     String savedPrice = "";
 
     private void awaitHomePageProducts() {
-        MainRunner.wait.until(driver -> {
-            return (MainRunner.homePage.allProducts.size() != 0);
+        wait.until(driver -> {
+            return (homePage.allProducts.size() != 0);
         });
     }
 
     private void awaitModalAnimationEnd() {
-        MainRunner.wait.until(driver -> {
-            String opacity = MainRunner.homePage.productModal.getCssValue("opacity");
+        wait.until(driver -> {
+            String opacity = homePage.productModal.getCssValue("opacity");
             return opacity.equals("1");
         });
     }
@@ -40,75 +38,75 @@ public class ProductSteps {
     @When("User clicks on edit products")
     public void userClicksOnEditProducts() {
         awaitHomePageProducts();
-        productCounter = MainRunner.homePage.allProducts.size();
-        MainRunner.homePage.editProductLink.click();
+        productCounter = homePage.allProducts.size();
+        homePage.editProductLink.click();
     }
 
     @When("User clicks create new product on create product page")
     public void userClicksCreateNewProduct() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
-        MainRunner.adminCreateProduct.createNew.click();
+        wait.until(ExpectedConditions.visibilityOf(adminProductPage.createNew));
+        adminCreateProductPage.createNew.click();
     }
     
 
     @When("User clicks back to products")
     public void userClicksBackToProducts() {
-        MainRunner.wait.until(ExpectedConditions.urlMatches("/admin/product/\\d+$"));
-        MainRunner.adminProduct.backToProduct.click();
+        wait.until(ExpectedConditions.urlMatches("/admin/product/\\d+$"));
+        adminProductPage.backToProduct.click();
     }
 
     @Then("An error message should appear")
     public void anErrorMessageShouldAppear() {
-        MainRunner.wait.until(ExpectedConditions.alertIsPresent());
+        wait.until(ExpectedConditions.alertIsPresent());
     }
 
     @Then("The new product should not appear as the latest product")
     public void theNewProductShouldNotAppearAsTheLatestProduct() {
         awaitHomePageProducts();
-        int newProductSize = MainRunner.homePage.allProducts.size();
+        int newProductSize = homePage.allProducts.size();
         Assert.assertEquals(newProductSize, productCounter);
     }
 
     @When("User clicks on an existing product")
     public void userClicksOnAnExistingProduct() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
-        MainRunner.adminCreateProduct.products.click();
+        wait.until(ExpectedConditions.visibilityOf(adminCreateProductPage.products));
+        adminCreateProductPage.products.click();
 
     }
 
     @When("User inputs {string} in product name")
     public void userInputsProductName(String arg1) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
-        MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
+        wait.until(ExpectedConditions.visibilityOf(adminProductPage.createNew));
+        adminProductPage.productInputs.get(1).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product description")
     public void userInputsProductDescription(String arg1) {
-        MainRunner.adminProduct.productInputs.get(2).sendKeys(arg1);
+        adminProductPage.productInputs.get(2).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product url")
     public void userInputsProductUrl(String arg1) {
-        MainRunner.adminProduct.productInputs.get(3).sendKeys(arg1);
+        adminProductPage.productInputs.get(3).sendKeys(arg1);
 
     }
     @When("User inputs {string} in product price")
     public void userInputsProductPrice(String arg1) {
-        MainRunner.adminProduct.productInputs.get(4).sendKeys(arg1);
+        adminProductPage.productInputs.get(4).sendKeys(arg1);
     }
     @When("User clicks update")
     public void userClicksUpdate() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.updateProduct));
-        MainRunner.adminProduct.updateProduct.click();
+        wait.until(ExpectedConditions.visibilityOf(adminProductPage.updateProduct));
+        adminProductPage.updateProduct.click();
     }
 
     @Then("The product should be updated {string} {string} {string} {string}")
     public void theProductShouldBeUpdated(String name, String description, String url, String price) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
-        savedName = MainRunner.adminCreateProduct.productNames.get(0).getText();
-        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(0).getText();
-        savedUrl = MainRunner.adminCreateProduct.productImages.get(0).getAttribute("src");
-        savedPrice = MainRunner.adminCreateProduct.productPrices.get(0).getText();
+        wait.until(ExpectedConditions.visibilityOf(adminCreateProductPage.products));
+        savedName = adminCreateProductPage.productNames.get(0).getText();
+        savedDescription = adminCreateProductPage.productDescriptions.get(0).getText();
+        savedUrl = adminCreateProductPage.productImages.get(0).getAttribute("src");
+        savedPrice = adminCreateProductPage.productPrices.get(0).getText();
         savedPrice = savedPrice.replace("$","");
 
         Assert.assertEquals(savedName,name);
@@ -122,11 +120,11 @@ public class ProductSteps {
     public void theNewProductShouldAppearAsTheLatestProduct(String name, String description, String url, String price) {
 
         awaitHomePageProducts();
-        int newProductSize = MainRunner.homePage.allProducts.size();
-        savedName = MainRunner.adminCreateProduct.productNames.get(newProductSize - 1).getText();
-        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(newProductSize - 1).getText();
-        savedUrl = MainRunner.adminCreateProduct.productImages.get(newProductSize - 1).getAttribute("src");
-        savedPrice = MainRunner.adminCreateProduct.productPrices.get(newProductSize - 1).getText();
+        int newProductSize = homePage.allProducts.size();
+        savedName = adminCreateProductPage.productNames.get(newProductSize - 1).getText();
+        savedDescription = adminCreateProductPage.productDescriptions.get(newProductSize - 1).getText();
+        savedUrl = adminCreateProductPage.productImages.get(newProductSize - 1).getAttribute("src");
+        savedPrice = adminCreateProductPage.productPrices.get(newProductSize - 1).getText();
         savedPrice = savedPrice.replace("$","");
         Assert.assertEquals(savedName,name);
         Assert.assertEquals(savedDescription,description);
@@ -137,37 +135,37 @@ public class ProductSteps {
 
     @When("User inputs {string} in product name on the update page")
     public void userInputsProductNameInProductNameOnTheUpdatePage(String arg1) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.updateProduct));
-        MainRunner.adminProduct.productInputs.get(1).clear();
-        MainRunner.adminProduct.productInputs.get(1).sendKeys(arg1);
+        wait.until(ExpectedConditions.visibilityOf(adminProductPage.updateProduct));
+        adminProductPage.productInputs.get(1).clear();
+        adminProductPage.productInputs.get(1).sendKeys(arg1);
     }
 
     @When("User inputs {string} in product description on the update page")
     public void userInputsProductDescriptionInProductDescriptionOnTheUpdatePage(String arg1) {
-        MainRunner.adminProduct.productInputs.get(3).clear();
-        MainRunner.adminProduct.productInputs.get(3).sendKeys(arg1);
+        adminProductPage.productInputs.get(3).clear();
+        adminProductPage.productInputs.get(3).sendKeys(arg1);
     }
 
     @When("User inputs {string} in product url on the update page")
     public void userInputsProductImageUrlInProductUrlOnTheUpdatePage(String arg1) {
-        MainRunner.adminProduct.productInputs.get(2).clear();
-        MainRunner.adminProduct.productInputs.get(2).sendKeys(arg1);
+        adminProductPage.productInputs.get(2).clear();
+        adminProductPage.productInputs.get(2).sendKeys(arg1);
     }
 
     @When("User inputs {string} in product price on the update page")
     public void userInputsProductPriceInProductPriceOnTheUpdatePage(String arg1) {
-        MainRunner.adminProduct.productInputs.get(4).clear();
+        adminProductPage.productInputs.get(4).clear();
 
-        MainRunner.adminProduct.productInputs.get(4).sendKeys(arg1);
+        adminProductPage.productInputs.get(4).sendKeys(arg1);
     }
 
     @Then("The product should not be updated {string} {string} {string} {string}")
     public void theProductShouldNotBeUpdated(String name, String description, String url, String price) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminCreateProduct.products));
-        savedName = MainRunner.adminCreateProduct.productNames.get(0).getText();
-        savedDescription = MainRunner.adminCreateProduct.productDescriptions.get(0).getText();
-        savedUrl = MainRunner.adminCreateProduct.productImages.get(0).getAttribute("src");
-        savedPrice = MainRunner.adminCreateProduct.productPrices.get(0).getText();
+        wait.until(ExpectedConditions.visibilityOf(adminCreateProductPage.products));
+        savedName = adminCreateProductPage.productNames.get(0).getText();
+        savedDescription = adminCreateProductPage.productDescriptions.get(0).getText();
+        savedUrl = adminCreateProductPage.productImages.get(0).getAttribute("src");
+        savedPrice = adminCreateProductPage.productPrices.get(0).getText();
         savedPrice = savedPrice.replace("$","");
 
         Assert.assertNotEquals(savedName,name);
@@ -187,15 +185,15 @@ public class ProductSteps {
         WebElement descButton;
         awaitHomePageProducts();
         int i = 1;
-        for (WebElement elem : MainRunner.homePage.allProducts) {
-            MainRunner.wait.until(ExpectedConditions.visibilityOf(elem));
+        for (WebElement elem : homePage.allProducts) {
+            wait.until(ExpectedConditions.visibilityOf(elem));
             action.moveToElement(elem).perform();
             descButton = driver.findElement(By.xpath("//*[@id='root']/div[3]/div[" + i + "]/div/div[1]/div[2]/div"));
             descButton.click();
             awaitModalAnimationEnd();
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(scrFile, new File("target/screenshots/showProductDetails" + i + ".jpg"));
-            MainRunner.homePage.productModalCloseButton.click();
+            homePage.productModalCloseButton.click();
             i++;
         }
 
@@ -203,7 +201,7 @@ public class ProductSteps {
 
     @When("User clicks create new product on admin product page")
     public void userClicksCreateNewProductOnAdminProduct() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.adminProduct.createNew));
-        MainRunner.adminProduct.createNew.click();
+        wait.until(ExpectedConditions.visibilityOf(adminProductPage.createNew));
+        adminProductPage.createNew.click();
     }
 }
