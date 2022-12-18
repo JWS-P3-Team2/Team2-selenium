@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class AdminProduct {
-    public AdminProduct(WebDriver driver) {
+public class CreateProductPage {
+    public CreateProductPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
     @FindBy(xpath="//div[2]/div/div/button")

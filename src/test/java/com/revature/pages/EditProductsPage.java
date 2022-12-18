@@ -7,15 +7,15 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class AdminCreateProduct {
-    public AdminCreateProduct(WebDriver driver) {
+public class EditProductsPage {
+    public EditProductsPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
     @FindBy(xpath="//div[2]/div/div/button")
     public WebElement createNew;
 
     @FindBy(xpath="//*/div[3]/div/button")
-    public WebElement products;
+    public List<WebElement> products;
 
     @FindBy(xpath="//*/div[3]/div/button/div/div/div/h5")
     public List<WebElement> productNames;

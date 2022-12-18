@@ -10,6 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class PageSteps extends SeleniumSteps {
+
+    private void awaitHomePageProducts() {
+        wait.until(driver -> {
+            return (homePage.allProducts.size() != 0);
+        });
+    }
     @Given("I am currently on the home page") // switch to navigates to
     public void iAmCurrentlyOnTheHomePage() throws InterruptedException {
         driver.get(Urls.base);
@@ -17,6 +23,7 @@ public class PageSteps extends SeleniumSteps {
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
         homePage = new Home(driver);
+        awaitHomePageProducts();
     }
 
     @Given("User is on the home page") // switch to navigates to
@@ -26,6 +33,17 @@ public class PageSteps extends SeleniumSteps {
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
         homePage = new Home(driver);
+        awaitHomePageProducts();
+    }
+
+    @Given("The user is on the home page")
+    public void the_user_is_on_the_home_page() {
+        driver.get(Urls.base);
+        wait.until(
+                ExpectedConditions.urlMatches(Urls.base + "/?")
+        );
+        homePage = new Home(driver);
+        awaitHomePageProducts();
     }
 
     @Given("User is on profile page")
@@ -44,6 +62,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
+        awaitHomePageProducts();
         homePage = new Home(driver);
     }
 

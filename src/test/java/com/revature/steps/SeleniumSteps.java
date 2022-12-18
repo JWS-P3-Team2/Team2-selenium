@@ -11,8 +11,9 @@ public abstract class SeleniumSteps {
     protected static WebDriver driver;
     protected static WebDriverWait wait;
     protected static Map<String, Object> cache = new HashMap<>();
-    protected static AdminCreateProduct adminCreateProductPage;
-    protected static AdminProduct adminProductPage;
+    protected static EditProductsPage editProductsPage;
+    protected static EditProductPage editProductPage;
+    protected static CreateProductPage createProductPage;
     protected static Cart cartPage;
     protected static Checkout checkoutPage;
     protected static Home homePage;

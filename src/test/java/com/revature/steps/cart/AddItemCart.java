@@ -16,10 +16,6 @@ public class AddItemCart extends SeleniumSteps {
     private static Home homePage = new Home(driver);
     private static Login loginPage = new Login(driver);
 
-    @Given("The user is on the home page")
-    public void the_user_is_on_the_home_page() {
-        driver.get("http://localhost:4200/");
-    }
     @When("The user hovers over a product window")
     public void the_user_hovers_over_a_product_window() {
         Actions action = new Actions(driver);
