@@ -46,6 +46,16 @@ public class PageSteps extends SeleniumSteps {
         awaitHomePageProducts();
     }
 
+    @Given("I am on the home page")
+    public void i_am_on_the_home_page() {
+        driver.get(Urls.base);
+        wait.until(
+                ExpectedConditions.urlMatches(Urls.base + "/?")
+        );
+        homePage = new Home(driver);
+        awaitHomePageProducts();
+    }
+
     @Given("User is on profile page")
     public void user_is_on_profile_page() {
         driver.get(Urls.profile);
@@ -54,16 +64,6 @@ public class PageSteps extends SeleniumSteps {
                 driver,
                 ProfilePage.class
         );
-    }
-
-    @Given("I am on the home page")
-    public void i_am_on_the_home_page() {
-        driver.get(Urls.base);
-        wait.until(
-                ExpectedConditions.urlMatches(Urls.base + "/?")
-        );
-        awaitHomePageProducts();
-        homePage = new Home(driver);
     }
 
     @Given("I am on the sign in page") // should rephrase to user navigates to sign-in page
