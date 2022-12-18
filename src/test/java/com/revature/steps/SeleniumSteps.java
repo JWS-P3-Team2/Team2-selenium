@@ -19,7 +19,6 @@ public abstract class SeleniumSteps {
     protected static HomePage homePage;
     protected static LoginPage loginPage;
     protected static OrdersPage ordersPage;
-    protected static Profile profile;
     protected static ProfilePage profilePage;
     protected static RegisterPage registerPage;
     protected static ReviewPage reviewPage;

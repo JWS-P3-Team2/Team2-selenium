@@ -2,9 +2,11 @@ package com.revature.steps.login;
 
 import com.revature.Urls;
 import com.revature.pages.LoginPage;
+import com.revature.pages.ProfilePage;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
@@ -38,6 +40,8 @@ public class LoginSteps extends SeleniumSteps {
         try {
             wait.until(ExpectedConditions.visibilityOf(homePage.profileLink));
             homePage.profileLink.click();
+            ExpectedConditions.urlMatches(Urls.profile + "/?");
+            profilePage = PageFactory.initElements(driver, ProfilePage.class);
         } catch (Exception e) {
             Assert.assertEquals(false,true,"User not logged in!");
         }
