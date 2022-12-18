@@ -1,7 +1,7 @@
 package com.revature.steps.search;
 
-import com.revature.MainRunner;
 import com.revature.Urls;
+import com.revature.pages.Home;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,14 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class SearchPositive extends SeleniumSteps {
-
-    @Given("I am currently on the home page")
-    public void iAmCurrentlyOnTheHomePage() throws InterruptedException {
-        driver.get(Urls.base);
-        // using thread.sleep because wait.until was not working as expected
-        // will need to look into this further
-        Thread.sleep(1000);
-    }
 
     @When("I type {string} in the search field")
     public void iTypeInTheSearchField(String arg0) {

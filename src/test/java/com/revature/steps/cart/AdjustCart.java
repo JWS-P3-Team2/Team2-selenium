@@ -1,6 +1,5 @@
 package com.revature.steps.cart;
 
-import com.revature.MainRunner;
 import com.revature.pages.Cart;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;

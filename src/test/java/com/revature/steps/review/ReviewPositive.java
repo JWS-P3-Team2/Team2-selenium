@@ -1,7 +1,6 @@
 package com.revature.steps.review;
 
 
-import com.revature.MainRunner;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;

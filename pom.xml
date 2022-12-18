@@ -53,7 +53,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <!--<CUCUMBER_BROWSER>firefox</CUCUMBER_BROWSER>-->
+                        <!--<CUCUMBER_BROWSER>edge</CUCUMBER_BROWSER>-->
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

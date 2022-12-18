@@ -1,6 +1,5 @@
 package com.revature.steps.login;
 
-import com.revature.MainRunner;
 import com.revature.Urls;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Given;
@@ -10,10 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class LoginSteps extends SeleniumSteps {
-    @Given("User is on the home page")
-    public void user_is_on_the_home_page() throws InterruptedException {
-        driver.get(Urls.base);
-    }
 
     @When("User clicks on Sign In link")
     public void user_clicks_on_sign_in_link() {

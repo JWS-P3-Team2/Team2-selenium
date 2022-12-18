@@ -1,4 +1,4 @@
-package com.revature;
+package com.revature.runner;
 
 import com.revature.pages.*;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
@@ -18,6 +18,6 @@ import java.util.Map;
 @CucumberOptions(
         features="src/test/resources/features",
         glue="com.revature.steps",
-        tags = "@user-profile-smoke"
+        tags = ""
 )
 public class MainRunner extends AbstractTestNGCucumberTests {}

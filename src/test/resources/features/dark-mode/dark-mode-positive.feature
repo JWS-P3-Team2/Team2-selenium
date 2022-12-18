@@ -1,3 +1,4 @@
+@dark-mode
 Feature: A registered user, guest, or admin can adjust color scheme to normal or dark mode
 
   Scenario Outline: A registered user, guest, or admin can change from normal to dark mode and vice versa on the home page

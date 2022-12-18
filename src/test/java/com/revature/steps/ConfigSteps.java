@@ -5,6 +5,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,6 +25,9 @@ public class ConfigSteps extends SeleniumSteps {
         else if (browser.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
         }
+        else if (browser.equals("edge")) {
+            WebDriverManager.edgedriver().setup();
+        }
         else {
             throw new Error("unrecognized browser");
         }
@@ -39,6 +43,9 @@ public class ConfigSteps extends SeleniumSteps {
         }
         else if (browser.equals("chrome")) {
             driver = new ChromeDriver();
+        }
+        else if (browser.equals("edge")) {
+            driver = new EdgeDriver();
         }
         else {
             throw new Error("unrecognized browser");

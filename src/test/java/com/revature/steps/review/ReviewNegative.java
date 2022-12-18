@@ -1,7 +1,7 @@
 package com.revature.steps.review;
 
-import com.revature.MainRunner;
 import com.revature.Urls;
+import com.revature.pages.Home;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,19 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class ReviewNegative extends SeleniumSteps {
-
-    @Given("I am on the home page")
-    public void i_am_on_the_home_page() {
-        driver.get(Urls.base);
-
-    }
-
-
-    @Given("I am on the sign in page")
-    public void i_am_on_the_sign_in_page() {
-        driver.get("http://localhost:4200/login");
-    }
-
 
     @When("I click the product link")
     public void iClickTheProductLink() {

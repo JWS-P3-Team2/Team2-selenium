@@ -1,6 +1,5 @@
 package com.revature.steps;
 
-import com.revature.MainRunner;
 import com.revature.Urls;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -47,13 +46,6 @@ public class UtilitySteps extends SeleniumSteps {
                         ExpectedConditions.urlToBe(Urls.base),
                         ExpectedConditions.urlToBe(Urls.base + "/")
                 )
-        );
-    }
-
-    @Then("User is on login page")
-    public void user_is_on_login_page() {
-        wait.until(
-                ExpectedConditions.urlMatches(Urls.login + "/?")
         );
     }
 

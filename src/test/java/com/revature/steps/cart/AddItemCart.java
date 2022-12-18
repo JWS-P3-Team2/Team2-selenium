@@ -1,6 +1,5 @@
 package com.revature.steps.cart;
 
-import com.revature.MainRunner;
 import com.revature.pages.Home;
 import com.revature.pages.Login;
 import com.revature.steps.SeleniumSteps;

@@ -6,6 +6,7 @@ Feature: Register Negative
 
   Scenario Outline: Invalid User Register
     When User clicks on Register link
+    Given User is on the register page
     When User types <firstname> into firstname field
     When User types <lastname> into lastname field
     When User types <email> into email registration field

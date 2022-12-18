@@ -1,3 +1,4 @@
+@cart
 @add-cart
 Feature: Successfully add items to cart
 

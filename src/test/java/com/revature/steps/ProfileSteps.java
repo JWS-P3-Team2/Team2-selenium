@@ -17,16 +17,6 @@ import java.util.stream.Collectors;
 
 public class ProfileSteps extends SeleniumSteps {
 
-    @Given("User is on profile page")
-    public void user_is_on_profile_page() {
-        driver.get(Urls.profile);
-        wait.until(ExpectedConditions.urlToBe(Urls.profile));
-        profilePage = PageFactory.initElements(
-                driver,
-                ProfilePage.class
-        );
-    }
-
     @Given("User located the update-profile module")
     public void user_located_the_update_profile_module() {
         profilePage.getUpdateProfile();

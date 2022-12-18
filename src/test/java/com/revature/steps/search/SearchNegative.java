@@ -1,9 +1,7 @@
 package com.revature.steps.search;
 
-import com.revature.MainRunner;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SearchNegative extends SeleniumSteps {
