@@ -12,7 +12,7 @@ import java.time.Duration;
 
 public class ConfigSteps extends SeleniumSteps {
 
-    private static String browser = System.getenv("CUCUMBER_BROWSER");
+    private static String browser = System.getProperty("CUCUMBER_BROWSER");
     @BeforeAll
     public static void initialize() {
         if (browser == null) {
