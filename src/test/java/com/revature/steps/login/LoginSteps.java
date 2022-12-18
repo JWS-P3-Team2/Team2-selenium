@@ -43,9 +43,9 @@ public class LoginSteps extends SeleniumSteps {
 
     @Then("User should see {string} in greeting")
     public void user_should_see_in_greeting(String string) {
-        wait.until(ExpectedConditions.visibilityOf(profile.profileGreeting));
-        boolean isPresent = profile.profileGreeting.getText().contains(string);
-        Assert.assertEquals(isPresent, true, "User name is not on Profile!");
+        Assert.assertTrue(
+                profilePage.greeting.getText().contains(string)
+        );
     }
 
     @Then("User will appear on homepage")
