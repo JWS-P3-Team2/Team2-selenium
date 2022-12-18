@@ -1,9 +1,8 @@
 package com.revature.steps.login;
 
 import com.revature.Urls;
-import com.revature.pages.Login;
+import com.revature.pages.LoginPage;
 import com.revature.steps.SeleniumSteps;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +15,7 @@ public class LoginSteps extends SeleniumSteps {
         wait.until(ExpectedConditions.visibilityOf(homePage.signInLink));
         homePage.signInLink.click();
         wait.until(ExpectedConditions.urlMatches(Urls.login + "/?"));
-        loginPage = new Login(driver);
+        loginPage = new LoginPage(driver);
     }
     @When("User types {string} into email field")
     public void user_types_into_email_field(String string) {

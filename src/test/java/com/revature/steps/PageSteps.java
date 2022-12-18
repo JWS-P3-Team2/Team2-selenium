@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 public class PageSteps extends SeleniumSteps {
 
@@ -22,7 +21,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
-        homePage = new Home(driver);
+        homePage = new HomePage(driver);
         awaitHomePageProducts();
     }
 
@@ -32,7 +31,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
-        homePage = new Home(driver);
+        homePage = new HomePage(driver);
         awaitHomePageProducts();
     }
 
@@ -42,7 +41,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
-        homePage = new Home(driver);
+        homePage = new HomePage(driver);
         awaitHomePageProducts();
     }
 
@@ -52,7 +51,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
-        homePage = new Home(driver);
+        homePage = new HomePage(driver);
         awaitHomePageProducts();
     }
 
@@ -72,7 +71,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.login + "/?")
         );
-        loginPage = new Login(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @Then("User is on login page")
@@ -80,7 +79,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.login + "/?")
         );
-        loginPage = new Login(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @When("User waits for log in page")
@@ -88,7 +87,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.login + "/?")
         );
-        loginPage = new Login(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @Given("I am on the product review page")
@@ -96,7 +95,7 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.base + "/?")
         );
-        reviewPage = new Review(driver);
+        reviewPage = new ReviewPage(driver);
     }
 
     @Given("User is on the register page")
@@ -104,6 +103,6 @@ public class PageSteps extends SeleniumSteps {
         wait.until(
                 ExpectedConditions.urlMatches(Urls.register + "/?")
         );
-        registerPage = new Register(driver);
+        registerPage = new RegisterPage(driver);
     }
 }

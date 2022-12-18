@@ -1,6 +1,7 @@
 package com.revature.steps.cart;
 
-import com.revature.pages.Cart;
+import com.revature.Urls;
+import com.revature.pages.CartPage;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,11 +10,13 @@ import org.testng.Assert;
 
 public class AdjustCart extends SeleniumSteps {
 
-    private static Cart cartPage = new Cart(driver);
-
     @When("User clicks on cart button")
     public void user_clicks_on_cart_button() {
-        cartPage.cartLink.click();
+        homePage.navCartLink.click();
+        wait.until(
+                ExpectedConditions.urlMatches(Urls.cart + "/?")
+        );
+        cartPage = new CartPage(driver);
     }
 
     @Then("User should see item in cart")

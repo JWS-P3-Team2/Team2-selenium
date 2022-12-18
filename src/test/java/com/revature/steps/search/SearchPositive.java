@@ -1,10 +1,7 @@
 package com.revature.steps.search;
 
-import com.revature.Urls;
-import com.revature.pages.Home;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;

@@ -1,7 +1,7 @@
 package com.revature.steps.orders;
 
 import com.revature.Urls;
-import com.revature.pages.Orders;
+import com.revature.pages.OrdersPage;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -21,7 +21,7 @@ public class ViewOrders extends SeleniumSteps {
         wait.until(ExpectedConditions
                 .visibilityOf(homePage.ordersLink)).click();
         wait.until(ExpectedConditions.urlMatches(Urls.orders + "/?"));
-        ordersPage = new Orders(driver);
+        ordersPage = new OrdersPage(driver);
     }
 
     @Then("User will see all orders purchased and view details")

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class Checkout {
-    public Checkout(WebDriver driver) {
+public class CheckoutPage {
+    public CheckoutPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
     @FindBy(xpath = "//input[@id='firstName']")

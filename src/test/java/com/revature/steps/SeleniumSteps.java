@@ -14,15 +14,13 @@ public abstract class SeleniumSteps {
     protected static EditProductsPage editProductsPage;
     protected static EditProductPage editProductPage;
     protected static CreateProductPage createProductPage;
-    protected static Cart cartPage;
-    protected static Checkout checkoutPage;
-    protected static Home homePage;
-    protected static Login loginPage;
-    protected static Orders ordersPage;
+    protected static CartPage cartPage;
+    protected static CheckoutPage checkoutPage;
+    protected static HomePage homePage;
+    protected static LoginPage loginPage;
+    protected static OrdersPage ordersPage;
     protected static Profile profile;
     protected static ProfilePage profilePage;
-    protected static Register registerPage;
-    protected static Review reviewPage;
-    protected static YourBag yourBagPage;
-
+    protected static RegisterPage registerPage;
+    protected static ReviewPage reviewPage;
 }

@@ -1,7 +1,8 @@
 package com.revature.steps.cart;
 
-import com.revature.pages.Home;
-import com.revature.pages.Login;
+import com.revature.Urls;
+import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,8 +14,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 public class AddItemCart extends SeleniumSteps {
-    private static Home homePage = new Home(driver);
-    private static Login loginPage = new Login(driver);
 
     @When("The user hovers over a product window")
     public void the_user_hovers_over_a_product_window() {
@@ -56,9 +55,11 @@ public class AddItemCart extends SeleniumSteps {
     }
     @Given("The registered user is on the home page")
     public void the_registered_user_is_on_the_home_page() {
-        driver.get("http://localhost:4200/");
+        driver.get(Urls.base);
+        homePage = new HomePage(driver);
         wait.until(ExpectedConditions.visibilityOf(homePage.signInLink));
         homePage.signInLink.click();
+        loginPage = new LoginPage(driver);
         wait.until(ExpectedConditions.visibilityOf(loginPage.email));
         loginPage.email.sendKeys("test@example.com");
         wait.until(ExpectedConditions.visibilityOf(loginPage.password));

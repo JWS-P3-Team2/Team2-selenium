@@ -8,7 +8,7 @@ import org.testng.Assert;
 
 import java.util.NoSuchElementException;
 
-public class Checkout extends SeleniumSteps {
+public class CheckoutSteps extends SeleniumSteps {
     int productCounter;
 
     private void awaitHomePageProducts() {

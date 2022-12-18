@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Review {
+public class ReviewPage {
 
     @FindBy(xpath="//body/div[@id='root']/div[3]/div[1]/div[1]/div[1]/div[2]/div[1]/*[1]")
     public WebElement firstProductDetailsButton;
@@ -48,7 +48,7 @@ public class Review {
 
     @FindBy(className = "css-1lpukdo")
     public WebElement productModalDeleteButton;
-    public Review(WebDriver driver) {
+    public ReviewPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
 }

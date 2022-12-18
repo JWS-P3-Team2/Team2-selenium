@@ -10,4 +10,6 @@ public abstract class Urls {
     public static String createProduct = base + "/admin/createproduct";
     public static String editProductBase = base + "/admin/product";
     public static String orders = base + "/orders";
+    public static String cart = base + "/cart";
+    public static String checkout = base + "/checkout";
 }

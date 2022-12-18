@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class Home {
+public class HomePage {
 
     @FindBy(xpath="//strong[text()='SIGN IN']")
     public WebElement signInLink;
@@ -58,7 +58,7 @@ public class Home {
     @FindBy(tagName = "Body")
     public WebElement mainBody;
     
-    public Home(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
 

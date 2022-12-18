@@ -1,5 +1,10 @@
 package com.revature.steps.checkout;
 
+import com.revature.Urls;
+import com.revature.pages.CartPage;
+import com.revature.pages.CheckoutPage;
+import com.revature.pages.HomePage;
+import com.revature.pages.LoginPage;
 import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,10 +18,12 @@ public class TransactionNotification extends SeleniumSteps {
 
     @Given("The User has logged in")
     public void the_user_has_logged_in() {
-        driver.get("http://localhost:4200/");
-        wait.until(ExpectedConditions.visibilityOf(homePage.signInLink));
+        driver.get(Urls.base);
+        wait.until(ExpectedConditions.urlMatches(Urls.base + "/?"));
+        homePage = new HomePage(driver);
         homePage.signInLink.click();
-        wait.until(ExpectedConditions.visibilityOf(loginPage.email));
+        wait.until(ExpectedConditions.urlMatches(Urls.login + "/?"));
+        loginPage = new LoginPage(driver);
         loginPage.email.sendKeys("user-profile@example.com");
         wait.until(ExpectedConditions.visibilityOf(loginPage.password));
         loginPage.password.sendKeys("guest");
@@ -30,10 +37,14 @@ public class TransactionNotification extends SeleniumSteps {
         action.moveToElement(firstProduct).perform();
         driver.findElement(By.xpath("//body/div[@id='root']/div[3]/div[1]/div[1]/div[1]/div[1]")).click();
         homePage.navCartLink.click();
+        ExpectedConditions.urlMatches(Urls.cart + "/?");
+        cartPage = new CartPage(driver);
     }
     @When("The user clicks the checkout button from the cart link")
     public void the_user_clicks_the_checkout_button_from_the_cart_link() {
-        yourBagPage.checkoutNowBtn.click();
+        cartPage.checkoutNowBtn.click();
+        ExpectedConditions.urlMatches(Urls.checkout + "/?");
+        checkoutPage = new CheckoutPage(driver);
     }
     @When("The user enters a First name")
     public void the_user_enters_a_first_name() {
