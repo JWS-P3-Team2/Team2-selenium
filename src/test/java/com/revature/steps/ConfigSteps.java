@@ -7,6 +7,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -28,6 +29,9 @@ public class ConfigSteps extends SeleniumSteps {
         else if (browser.equals("edge")) {
             WebDriverManager.edgedriver().setup();
         }
+        else if (browser.equals("safari")) {
+            WebDriverManager.safaridriver().setup();
+        }
         else {
             throw new Error("unrecognized browser");
         }
@@ -46,6 +50,9 @@ public class ConfigSteps extends SeleniumSteps {
         }
         else if (browser.equals("edge")) {
             driver = new EdgeDriver();
+        }
+        else if (browser.equals("safari")) {
+            driver = new SafariDriver();
         }
         else {
             throw new Error("unrecognized browser");
