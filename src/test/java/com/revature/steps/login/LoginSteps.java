@@ -1,44 +1,47 @@
 package com.revature.steps.login;
 
-import com.revature.MainRunner;
-import io.cucumber.java.en.Given;
+import com.revature.Urls;
+import com.revature.pages.LoginPage;
+import com.revature.pages.ProfilePage;
+import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-public class LoginSteps {
-    @Given("User is on the home page")
-    public void user_is_on_the_home_page() throws InterruptedException {
-        MainRunner.driver.get(MainRunner.webURL);
-    }
+public class LoginSteps extends SeleniumSteps {
 
     @When("User clicks on Sign In link")
     public void user_clicks_on_sign_in_link() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.signInLink));
-        MainRunner.homePage.signInLink.click();
+        wait.until(ExpectedConditions.visibilityOf(homePage.signInLink));
+        homePage.signInLink.click();
+        wait.until(ExpectedConditions.urlMatches(Urls.login + "/?"));
+        loginPage = new LoginPage(driver);
     }
     @When("User types {string} into email field")
     public void user_types_into_email_field(String string) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.email));
-        MainRunner.loginPage.email.sendKeys(string);
+        wait.until(ExpectedConditions.visibilityOf(loginPage.email));
+        loginPage.email.sendKeys(string);
     }
     @When("User types {string} into password field")
     public void user_types_into_password_field(String string) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.password));
-        MainRunner.loginPage.password.sendKeys(string);
+        wait.until(ExpectedConditions.visibilityOf(loginPage.password));
+        loginPage.password.sendKeys(string);
     }
     @When("User clicks Sign In Button")
     public void user_clicks_sign_up_button() {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.loginPage.loginButton));
-        MainRunner.loginPage.loginButton.click();
+        wait.until(ExpectedConditions.visibilityOf(loginPage.loginButton));
+        loginPage.loginButton.click();
     }
 
     @Then("User should click on Profile link")
     public void user_should_click_on_profile_link() {
         try {
-            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.profileLink));
-            MainRunner.homePage.profileLink.click();
+            wait.until(ExpectedConditions.visibilityOf(homePage.profileLink));
+            homePage.profileLink.click();
+            ExpectedConditions.urlMatches(Urls.profile + "/?");
+            profilePage = PageFactory.initElements(driver, ProfilePage.class);
         } catch (Exception e) {
             Assert.assertEquals(false,true,"User not logged in!");
         }
@@ -46,14 +49,14 @@ public class LoginSteps {
 
     @Then("User should see {string} in greeting")
     public void user_should_see_in_greeting(String string) {
-        MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.profilePage.profileGreeting));
-        boolean isPresent = MainRunner.profilePage.profileGreeting.getText().contains(string);
-        Assert.assertEquals(isPresent, true, "User name is not on Profile!");
+        Assert.assertTrue(
+                profilePage.greeting.getText().contains(string)
+        );
     }
 
     @Then("User will appear on homepage")
     public void user_will_appear_on_homepage() {
-        MainRunner.wait.until(
+        wait.until(
             ExpectedConditions.urlMatches("http://localhost:4200/?")
         );
     }

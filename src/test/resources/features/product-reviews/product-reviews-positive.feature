@@ -7,6 +7,7 @@ Feature: Leave a review for a product, delete a review
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click on a rating
@@ -20,6 +21,7 @@ Feature: Leave a review for a product, delete a review
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click on a product
     Then I should see the product modal
     When I click the product details link
@@ -35,6 +37,7 @@ Feature: Leave a review for a product, delete a review
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click on a rating
@@ -48,6 +51,7 @@ Feature: Leave a review for a product, delete a review
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click the delete button on the review

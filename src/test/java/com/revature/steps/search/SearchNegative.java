@@ -1,16 +1,15 @@
 package com.revature.steps.search;
 
-import com.revature.MainRunner;
+import com.revature.steps.SeleniumSteps;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class SearchNegative {
+public class SearchNegative extends SeleniumSteps {
 
     @Then("I should see no results")
     public void iShouldSeeNoResults() {
         try {
-            MainRunner.wait.until(ExpectedConditions.visibilityOf(MainRunner.homePage.searchResultHeader));
+            wait.until(ExpectedConditions.visibilityOf(homePage.searchResultHeader));
         } catch (Exception e) {
             assert true;
         }
@@ -19,7 +18,7 @@ public class SearchNegative {
     @Then("I should see no alert")
     public void iShouldSeeNoAlert() {
         try {
-            MainRunner.wait.until(ExpectedConditions.alertIsPresent());
+            wait.until(ExpectedConditions.alertIsPresent());
         } catch (Exception e) {
             assert true;
         }

@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Cart {
-    public Cart(WebDriver driver) {
+public class CartPage {
+    public CartPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
 
@@ -30,4 +30,7 @@ public class Cart {
 
     @FindBy(xpath="//*[@id='root']/div[1]/div/div[2]/div[3]")
     public WebElement cartLink;
+
+    @FindBy(xpath = "//body[1]/div[1]/div[2]/div[1]/div[2]/div[2]/button[1]")
+    public WebElement checkoutNowBtn;
 }

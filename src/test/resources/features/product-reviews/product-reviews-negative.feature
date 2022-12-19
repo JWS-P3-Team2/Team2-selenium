@@ -3,6 +3,7 @@ Feature: Leave a review for a product
   # all scenarios should pass aka green checkmarks
   Scenario: Leave a review for a product when not signed in
     Given I am on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click the product details link
@@ -16,6 +17,7 @@ Feature: Leave a review for a product
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click the product details link
@@ -29,6 +31,7 @@ Feature: Leave a review for a product
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click the product details link
@@ -42,6 +45,7 @@ Feature: Leave a review for a product
     When I fill in the email and password fields with valid credentials
     And I click the sign in button
     Then I should be on the home page
+    Given I am on the product review page
     When I click the product link
     Then I should see the product modal
     When I click the product details link

@@ -7,9 +7,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-public class Orders {
+public class OrdersPage {
 
-    public Orders(WebDriver driver) {
+    public OrdersPage(WebDriver driver) {
         PageFactory.initElements(driver,this);
     }
 

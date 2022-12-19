@@ -41,4 +41,8 @@ public class ProfilePage {
         );
     }
 
+    @CacheLookup
+    @FindBy(xpath="/html/body/div/div[2]/h2")
+    public WebElement greeting;
+
 }

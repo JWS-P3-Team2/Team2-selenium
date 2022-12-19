@@ -1,6 +1,6 @@
 package com.revature.steps;
 
-import com.revature.MainRunner;
+import com.revature.Urls;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,16 +9,16 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class UtilitySteps {
+public class UtilitySteps extends SeleniumSteps {
 
     @When("User refreshes the page")
     public void user_refreshes_the_page() {
-        MainRunner.driver.navigate().refresh();
+        driver.navigate().refresh();
     }
 
     @When("User signs out")
     public void user_signs_out() {
-        WebElement signOut = MainRunner.driver.findElement(
+        WebElement signOut = driver.findElement(
                 By.xpath("//strong[text()='LOGOUT']")
         );
         signOut.click();
@@ -26,33 +26,26 @@ public class UtilitySteps {
 
     @Given("User is logged in with {string} and {string}")
     public void user_is_logged_in(String username, String password) {
-        MainRunner.driver.get(MainRunner.loginUrl); // should be an env variable
-        MainRunner.wait.until(ExpectedConditions.urlToBe(MainRunner.loginUrl));
-        WebElement usernameInput = MainRunner.driver.findElement(
+        driver.get(Urls.login); // should be an env variable
+        wait.until(ExpectedConditions.urlToBe(Urls.login));
+        WebElement usernameInput = driver.findElement(
                 By.name("email")
         );
-        WebElement passwordInput = MainRunner.driver.findElement(
+        WebElement passwordInput = driver.findElement(
                 By.name("password")
         );
-        WebElement submit = MainRunner.driver.findElement(
+        WebElement submit = driver.findElement(
                 By.xpath("//button[@type='submit']")
         );
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         submit.click();
         // A successful login will re-route the user to home
-        MainRunner.wait.until(
+        wait.until(
                 ExpectedConditions.or(
-                        ExpectedConditions.urlToBe(MainRunner.homeUrl),
-                        ExpectedConditions.urlToBe(MainRunner.homeUrl + "/")
+                        ExpectedConditions.urlToBe(Urls.base),
+                        ExpectedConditions.urlToBe(Urls.base + "/")
                 )
-        );
-    }
-
-    @Then("User is on login page")
-    public void user_is_on_login_page() {
-        MainRunner.wait.until(
-                ExpectedConditions.urlMatches(MainRunner.loginUrl + "/?")
         );
     }
 
@@ -69,14 +62,14 @@ public class UtilitySteps {
 
     @Given("User erroneously is on profile page")
     public void user_erroneously_is_on_profile_page() {
-        MainRunner.driver.get(MainRunner.profileUrl);
+        driver.get(Urls.profile);
     }
 
     @Then("User redirected to login page")
     public void user_redirected_to_login_page() {
         try {
-            MainRunner.wait.until(
-                    ExpectedConditions.urlMatches(MainRunner.loginUrl + "/?")
+            wait.until(
+                    ExpectedConditions.urlMatches(Urls.login + "/?")
             );
         }
         catch (TimeoutException e) {
