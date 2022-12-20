@@ -17,6 +17,18 @@ import java.util.stream.Collectors;
 
 public class ProfileSteps extends SeleniumSteps {
 
+    public String getFutureDateString(int additionalYears) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.roll(GregorianCalendar.YEAR, additionalYears);
+        StringBuffer buffer = new StringBuffer(); // this should be a helper function
+        buffer.append(calendar.get(GregorianCalendar.MONTH));
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.DATE) + 1);
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.YEAR));
+        return buffer.toString();
+    }
+
     @Given("User located the update-profile module")
     public void user_located_the_update_profile_module() {
         profilePage.getUpdateProfile();
@@ -127,18 +139,11 @@ public class ProfileSteps extends SeleniumSteps {
 
     @When("User selects two years from now for the expiration field")
     public void user_selects_two_years_from_now_for_the_expiration_field() {
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.roll(GregorianCalendar.YEAR, 2);
-        StringBuffer buffer = new StringBuffer(); // this should be a helper function
-        buffer.append(calendar.get(GregorianCalendar.DATE));
-        buffer.append('-');
-        buffer.append(calendar.get(GregorianCalendar.MONTH));
-        buffer.append('-');
-        buffer.append(calendar.get(GregorianCalendar.YEAR));
-        cache.put("expiration", buffer.toString());
+        String dateString = getFutureDateString(2);
+        cache.put("expiration", dateString);
         profilePage.getPaymentManagement().get(
                 "expDate"
-        ).sendKeys(buffer.toString());
+        ).sendKeys(dateString);
     }
 
     @When("^User types (\\d+) into ccv field$")
