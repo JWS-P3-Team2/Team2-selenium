@@ -18,7 +18,7 @@ import java.util.Map;
 @CucumberOptions(
         features="src/test/resources/features",
         glue="com.revature.steps",
-        tags = "@checkout"
+        tags = ""
 )
 
 public class MainRunner extends AbstractTestNGCucumberTests {

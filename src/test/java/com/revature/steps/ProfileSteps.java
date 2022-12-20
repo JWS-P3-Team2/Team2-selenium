@@ -19,6 +19,18 @@ import java.util.stream.Collectors;
 
 public class ProfileSteps {
 
+    public String getFutureDateString(int additionalYears) {
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.roll(GregorianCalendar.YEAR, additionalYears);
+        StringBuffer buffer = new StringBuffer(); // this should be a helper function
+        buffer.append(calendar.get(GregorianCalendar.MONTH));
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.DATE) + 1);
+        buffer.append('-');
+        buffer.append(calendar.get(GregorianCalendar.YEAR));
+        return buffer.toString();
+    }
+
     @Given("User is on profile page")
     public void user_is_on_profile_page() {
         MainRunner.driver.get(MainRunner.profileUrl);
@@ -207,22 +219,15 @@ public class ProfileSteps {
 
     @When("User selects two years from now for the expiration field")
     public void user_selects_two_years_from_now_for_the_expiration_field() {
-        GregorianCalendar calendar = new GregorianCalendar();
-        calendar.roll(GregorianCalendar.YEAR, 2);
-        StringBuffer buffer = new StringBuffer(); // this should be a helper function
-        buffer.append(calendar.get(GregorianCalendar.DATE));
-        buffer.append('-');
-        buffer.append(calendar.get(GregorianCalendar.MONTH));
-        buffer.append('-');
-        buffer.append(calendar.get(GregorianCalendar.YEAR));
-        MainRunner.cache.put("expiration", buffer.toString());
+        String dateString = getFutureDateString(2);
+        MainRunner.cache.put("expiration", dateString);
         ProfilePage page = PageFactory.initElements(
                 MainRunner.driver,
                 ProfilePage.class
         );
         page.getPaymentManagement().get(
                 "expDate"
-        ).sendKeys(buffer.toString());
+        ).sendKeys(dateString);
     }
 
     @When("^User types (\\d+) into ccv field$")
